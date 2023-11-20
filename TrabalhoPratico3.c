@@ -51,7 +51,11 @@ int main(){
     scanf("%d", &n);
 
     JOGADOR jogadores[n], jogadoreslidos[n];
+    AUX auxiliar[n];
 
+    CriarVetor_aux(jogadores, auxiliar, n);
+
+    
     int opcao;
     do{
         printf("Escolha uma opcao: \n");
@@ -95,17 +99,35 @@ int main(){
                 break;
 
             case 5:
-
+                OrdenarJogadores_alfabeto(auxiliar, n);
+                break;
+            
             case 6:
-
+                OrdenarJogadores_posicao(auxiliar, n);
+                break;
+            
             case 7:
-
+                OrdenarJogadores_vitoria(auxiliar, n);
+                break;
+            
             case 8:
-
+                ListarJogadores_posicaoCampeonato(auxiliar, n);
+                break;
+            
             case 9:
-
+                int limite;
+                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuação maior: ");
+                scanf("%d", &limite);
+                ListarJogadores_PontuacaoMaior(auxiliar, n, limite );
+                break;
+            
             case 10:
-
+                int limite;
+                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuação menor: ");
+                scanf("%d", &limite);
+                ListarJogadores_PontuacaoMenor(auxiliar, n , limite);
+                break;
+            
             case 11:
                 string100 chave;
                 printf("Digite nome: ");
