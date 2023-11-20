@@ -51,7 +51,11 @@ int main(){
     scanf("%d", &n);
 
     JOGADOR jogadores[n], jogadoreslidos[n];
+    AUX auxiliar[n];
 
+    CriarVetor_aux(jogadores, auxiliar, n);
+
+    
     int opcao;
     do{
         printf("Escolha uma opcao: \n");
@@ -124,7 +128,6 @@ int main(){
                 ListarJogadores_PontuacaoMenor(auxiliar, n , limite);
                 break;
             
-
             case 11:
                 string100 chave;
                 printf("Digite nome: ");
