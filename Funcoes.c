@@ -12,7 +12,6 @@ void PularLinha(int num){
     }
 }
 
-
 //Função Escrever Jogadores Vetor//
 
 void EscreverJogadoresVetor(JOGADOR *jogadores, int n){
@@ -32,40 +31,40 @@ void EscreverJogadoresVetor(JOGADOR *jogadores, int n){
 
         //CPF//
         printf("CPF: ");
-        scanf("%u", &*(jogadores+i)->CPF->cpf);
+        scanf("%u", &*(jogadores+i)->cpf);
 
         //Gênero//
         printf("Genero: ");
         fflush(stdin);
-        gets(*(jogadores+i)->genero->gender);
+        gets(*(jogadores+i)->genero);
 
         //Estado Civil//
         printf("Estado civil: ");
-        scanf("%d", &*(jogadores+i)->estadocivil->civil_state);
+        scanf("%d", &*(jogadores+i)->civil);
 
         //Equipe//
         printf("Nome Equipe: ");
         fflush(stdin);
-        gets(*(jogadores+i)->equipe->nome_equipe);
+        gets(*(jogadores+i)->time->nome_equipe);
         printf("Nickname equipe rede social: ");
         fflush(stdin);
-        gets(*(jogadores+i)->equipe->nickname_equipe);
+        gets(*(jogadores+i)->time->nickname_equipe);
         printf("Seguidores rede social equipe: ");
-        scanf("%d", &*(jogadores+i)->equipe->seguidores_equipe);
+        scanf("%d", &*(jogadores+i)->time->seguidores_equipe);
 
         //Patrocinadora Principal//
         printf("Patrocinadora principal: ");
         fflush(stdin);
-        gets(*(jogadores+i)->patrocinadora->sponsor);
+        gets(*(jogadores+i)->patrocinadora);
 
         //Rede Social//
         printf("Rede social: ");
         fflush(stdin);
-        gets(*(jogadores+i)->redesocial->social_network);
+        gets(*(jogadores+i)->redesocial_jogador->nickname_jogador);
 
         //Seguidores Rede Social//
         printf("Seguidores rede social: ");
-        scanf("%d", &*(jogadores+i)->seguidores->followers);
+        scanf("%d", &*(jogadores+i)->redesocial_jogador->seguidores_jogador);
 
         //Equipamento de Hardware//
         printf("Desktop(0) ou Notebook(1)?");
@@ -110,61 +109,7 @@ void EscreverJogadoresArquivoBinario(JOGADOR *jogadores, int n){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "wb");
     if(file != NULL){
-        for(int i=0; i<n; i++){
-            //Nome Jogador//
-            fwrite(*(jogadores+i)->nome, sizeof(*(jogadores+i)->nome), 1, file);
-
-            //Nascimento//
-            fwrite(*(jogadores+i)->data->dia, sizeof(*(jogadores+i)->data->dia), 1, file);
-            fwrite(*(jogadores+i)->data->mes, sizeof(*(jogadores+i)->data->mes), 1, file);
-            fwrite(*(jogadores+i)->data->ano, sizeof(*(jogadores+i)->data->ano), 1, file);
-
-            //CPF//
-            fwrite(*(jogadores+i)->CPF->cpf, sizeof(*(jogadores+i)->CPF->cpf), 1, file);
-
-            //Gênero//
-            fwrite(*(jogadores+i)->genero->gender, sizeof(*(jogadores+i)->genero->gender), 1, file);
-
-            //Estado Civil//
-            fwrite(*(jogadores+i)->estadocivil->civil_state, sizeof(*(jogadores+i)->estadocivil->civil_state), 1, file);
-
-            //Equipe//
-            fwrite(*(jogadores+i)->equipe->nome_equipe, sizeof(*(jogadores+i)->equipe->nome_equipe), 1, file);
-            fwrite(*(jogadores+i)->equipe->nickname_equipe, sizeof(*(jogadores+i)->equipe->nickname_equipe), 1 ,file);                
-            fwrite(*(jogadores+i)->equipe->seguidores_equipe, sizeof(*(jogadores+i)->equipe->seguidores_equipe), 1, file);
-
-            //Patrociadora Principal//
-            fwrite(*(jogadores+i)->patrocinadora->sponsor, sizeof(*(jogadores+i)->patrocinadora->sponsor), 1, file);
-
-            //Rede Socil//
-            fwrite(*(jogadores+i)->redesocial->social_network, sizeof(*(jogadores+i)->redesocial->social_network), 1, file);
-
-            //Seguidors Rede Social//
-            fwrite(*(jogadores+i)->seguidores->followers, sizeof(*(jogadores+i)->seguidores->followers), 1, file);
-
-            //Equipmento de Hardware//
-            if(*(jogadores+i)->hardware->computr==0){
-                fwrite("Desktop", sizeof(*(jogadores+i)->hardware->computer), 1, file);
-            }
-            else{
-            fwrite("Laptop", sizeof(*(jogadores+i)->hardware->computer), 1, file);
-            }
-            fwrite(*(jogadores+i)->hardware->cpu, sizeof(*(jogadores+i)->hardware->cpu), 1, file);
-            fwrite(*(jogadores+i)->hardware->gpu, sizeof(*(jogadores+i)->hardware->gpu), 1, file);
-            fwrite(*(jogadores+i)->hardware->ram, sizeof(*(jogadores+i)->hardware->ram), 1, file);
-
-            //Dados Campeonato//
-            fwrite(*(jogadores+i)->campeonato->victories, sizeof(*(jogadores+i)->campeonato->victories), 1, file);
-            fwrite(*(jogadores+i)->campeonato->draws, sizeof(*(jogadores+i)->campeonato->draws), 1, file);
-            fwrite(*(jogadores+i)->campeonato->losses, sizeof(*(jogadores+i)->campeonato->losses), 1, file);
-            fwrite(*(jogadores+i)->campeonato->points, sizeof(*(jogadores+i)->campeonato->losses), 1, file);
-
-            //Títulos Mundiais//
-            fwrite(*(jogadores+i)->titulos->titles, sizeof(*(jogadores+i)->titulos->titles), 1, file);
-
-            //Ranking//
-            fwrite(*(jogadores+i)->ranking->rank, sizeof(*(jogadores+i)->ranking->rank), 1, file);
-        }
+        fwrite(jogadores, sizeof(JOGADOR), n, file);
     }
     
     else{
@@ -177,63 +122,9 @@ void EscreverJogadoresArquivoBinario(JOGADOR *jogadores, int n){
 
 void LerJogadoresArquivoBinario(JOGADOR *jogadoreslidos, int n){
      FILE *file;
-    file = fopen("TrabalhoPratico.dat", "wb");
+    file = fopen("TrabalhoPratico.dat", "rb");
     if(file != NULL){
-        for(int i=0; i<n; i++){
-            //Nome Jogador//
-            fread(*(jogadoreslidos+i)->nome, sizeof(*(jogadoreslidos+i)->nome), 1, file);
-
-            //Nascimento//
-            fread(*(jogadoreslidos+i)->data->dia, sizeof(*(jogadoreslidos+i)->data->dia), 1, file);
-            fread(*(jogadoreslidos+i)->data->mes, sizeof(*(jogadoreslidos+i)->data->mes), 1, file);
-            fread(*(jogadoreslidos+i)->data->ano, sizeof(*(jogadoreslidos+i)->data->ano), 1, file);
-
-            //CPF//
-            fread(*(jogadoreslidos+i)->CPF->cpf, sizeof(*(jogadoreslidos+i)->CPF->cpf), 1, file);
-
-            //Gênero//
-            fread(*(jogadoreslidos+i)->genero->gender, sizeof(*(jogadoreslidos+i)->genero->gender), 1, file);
-
-            //Estado Civil//
-            fread(*(jogadoreslidos+i)->estadocivil->civil_state, sizeof(*(jogadoreslidos+i)->estadocivil->civil_state), 1, file);
-
-            //Equipe//
-            fread(*(jogadoreslidos+i)->equipe->nome_equipe, sizeof(*(jogadoreslidos+i)->equipe->nome_equipe), 1, file);
-            fread(*(jogadoreslidos+i)->equipe->nickname_equipe, sizeof(*(jogadoreslidos+i)->equipe->nickname_equipe), 1 ,file);                
-            fread(*(jogadoreslidos+i)->equipe->seguidores_equipe, sizeof(*(jogadoreslidos+i)->equipe->seguidores_equipe), 1, file);
-
-            //Patrociadora Principal//
-            fread(*(jogadoreslidos+i)->patrocinadora->sponsor, sizeof(*(jogadoreslidos+i)->patrocinadora->sponsor), 1, file);
-
-            //Rede Socil//
-            fread(*(jogadoreslidos+i)->redesocial->social_network, sizeof(*(jogadoreslidos+i)->redesocial->social_network), 1, file);
-
-            //Seguidors Rede Social//
-            fread(*(jogadoreslidos+i)->seguidores->followers, sizeof(*(jogadoreslidos+i)->seguidores->followers), 1, file);
-
-            //Equipmento de Hardware//
-            if(*(jogadoreslidos+i)->hardware->computr==0){
-                fread("Desktop", sizeof(*(jogadoreslidos+i)->hardware->computer), 1, file);
-            }
-            else{
-            fread("Laptop", sizeof(*(jogadoreslidos+i)->hardware->computer), 1, file);
-            }
-            fread(*(jogadoreslidos+i)->hardware->cpu, sizeof(*(jogadoreslidos+i)->hardware->cpu), 1, file);
-            fread(*(jogadoreslidos+i)->hardware->gpu, sizeof(*(jogadoreslidos+i)->hardware->gpu), 1, file);
-            fread(*(jogadoreslidos+i)->hardware->ram, sizeof(*(jogadoreslidos+i)->hardware->ram), 1, file);
-
-            //Dados Campeonato//
-            fread(*(jogadoreslidos+i)->campeonato->victories, sizeof(*(jogadoreslidos+i)->campeonato->victories), 1, file);
-            fread(*(jogadoreslidos+i)->campeonato->draws, sizeof(*(jogadoreslidos+i)->campeonato->draws), 1, file);
-            fread(*(jogadoreslidos+i)->campeonato->losses, sizeof(*(jogadoreslidos+i)->campeonato->losses), 1, file);
-            fread(*(jogadoreslidos+i)->campeonato->points, sizeof(*(jogadoreslidos+i)->campeonato->losses), 1, file);
-
-            //Títulos mundiais//
-            fread(*(jogadoreslidos+i)->titulos->titles, sizeof(*(jogadoreslidos+i)->titulos->titles), 1, file);
-
-            //Ranking//
-            fread(*(jogadoreslidos+i)->ranking->rank, sizeof(*(jogadoreslidos+i)->ranking->rank), 1, file);
-        }
+        fread(jogadoreslidos, sizeof(JOGADOR), n, file);
     }
     
     else{
@@ -244,67 +135,12 @@ void LerJogadoresArquivoBinario(JOGADOR *jogadoreslidos, int n){
 
 //Função alterar dados jogador arquivo binario//
 
-void AlterarDadosJogadorArquivoBinario(JOGADOR *jogadores, int a){
+void AlterarDadosJogadorArquivoBinario(JOGADOR *jogadores, int a, int n){
         FILE *file;
-    file = fopen("TrabalhoPratico.dat", "wb");
+    file = fopen("TrabalhoPratico.dat", "rb+");
     if(file != NULL){
-        int i;
-        for(i=0; i!=a; i++){
-        }
-        i++;
-        //Nome Jogador//
-            fwrite(*(jogadores+i)->nome, sizeof(*(jogadores+i)->nome), 1, file);
-
-            //Nascimento//
-            fwrite(*(jogadores+i)->data->dia, sizeof(*(jogadores+i)->data->dia), 1, file);
-            fwrite(*(jogadores+i)->data->mes, sizeof(*(jogadores+i)->data->mes), 1, file);
-            fwrite(*(jogadores+i)->data->ano, sizeof(*(jogadores+i)->data->ano), 1, file);
-
-            //CPF//
-            fwrite(*(jogadores+i)->CPF->cpf, sizeof(*(jogadores+i)->CPF->cpf), 1, file);
-
-            //Gênero//
-            fwrite(*(jogadores+i)->genero->gender, sizeof(*(jogadores+i)->genero->gender), 1, file);
-
-            //Estado Civil//
-            fwrite(*(jogadores+i)->estadocivil->civil_state, sizeof(*(jogadores+i)->estadocivil->civil_state), 1, file);
-
-            //Equipe//
-            fwrite(*(jogadores+i)->equipe->nome_equipe, sizeof(*(jogadores+i)->equipe->nome_equipe), 1, file);
-            fwrite(*(jogadores+i)->equipe->nickname_equipe, sizeof(*(jogadores+i)->equipe->nickname_equipe), 1 ,file);                
-            fwrite(*(jogadores+i)->equipe->seguidores_equipe, sizeof(*(jogadores+i)->equipe->seguidores_equipe), 1, file);
-
-            //Patrociadora Principal//
-            fwrite(*(jogadores+i)->patrocinadora->sponsor, sizeof(*(jogadores+i)->patrocinadora->sponsor), 1, file);
-
-            //Rede Socil//
-            fwrite(*(jogadores+i)->redesocial->social_network, sizeof(*(jogadores+i)->redesocial->social_network), 1, file);
-
-            //Seguidors Rede Social//
-            fwrite(*(jogadores+i)->seguidores->followers, sizeof(*(jogadores+i)->seguidores->followers), 1, file);
-
-            //Equipmento de Hardware//
-            if(*(jogadores+i)->hardware->computr==0){
-                fwrite("Desktop", sizeof(*(jogadores+i)->hardware->computer), 1, file);
-            }
-            else{
-            fwrite("Laptop", sizeof(*(jogadores+i)->hardware->computer), 1, file);
-            }
-            fwrite(*(jogadores+i)->hardware->cpu, sizeof(*(jogadores+i)->hardware->cpu), 1, file);
-            fwrite(*(jogadores+i)->hardware->gpu, sizeof(*(jogadores+i)->hardware->gpu), 1, file);
-            fwrite(*(jogadores+i)->hardware->ram, sizeof(*(jogadores+i)->hardware->ram), 1, file);
-
-            //Dados Campeonato//
-            fwrite(*(jogadores+i)->campeonato->victories, sizeof(*(jogadores+i)->campeonato->victories), 1, file);
-            fwrite(*(jogadores+i)->campeonato->draws, sizeof(*(jogadores+i)->campeonato->draws), 1, file);
-            fwrite(*(jogadores+i)->campeonato->losses, sizeof(*(jogadores+i)->campeonato->losses), 1, file);
-            fwrite(*(jogadores+i)->campeonato->points, sizeof(*(jogadores+i)->campeonato->losses), 1, file);
-
-            //Títulos mundiais//
-            fwrite(*(jogadores+i)->titulos->titles, sizeof(*(jogadores+i)->titulos->titles), 1, file);
-
-            //Ranking//
-            fwrite(*(jogadores+i)->ranking->rank, sizeof(*(jogadores+i)->ranking->rank), 1, file);
+        fseek(file, a*sizeof(JOGADOR), SEEK_SET);
+        fwrite(jogadores, sizeof(JOGADOR), 1, file);
     }
     
     else{
@@ -317,17 +153,16 @@ void AlterarDadosJogadorArquivoBinario(JOGADOR *jogadores, int a){
 
 void InserirVitoriaEmpateDerrota(JOGADOR *jogadores, int a){
     FILE *file;
-    file = fopen("TrabalhoPratico.dat", "wb");
+    file = fopen("TrabalhoPratico.dat", "rb+");
     if(file != NULL){
-        int i;
-        for(i=0; i<=a; i++){
-        }
-        i++;
+        fseek(file, a*sizeof(JOGADOR), SEEK_SET);
         //Dados Campeonato//
-            fwrite(*(jogadores+i)->campeonato->victories, sizeof(*(jogadores+i)->campeonato->victories), 1, file);
-            fwrite(*(jogadores+i)->campeonato->draws, sizeof(*(jogadores+i)->campeonato->draws), 1, file);
-            fwrite(*(jogadores+i)->campeonato->losses, sizeof(*(jogadores+i)->campeonato->losses), 1, file);
-            fwrite(*(jogadores+i)->campeonato->points, sizeof(*(jogadores+i)->campeonato->losses), 1, file);
+            fwrite(*(jogadores+a)->campeonato->victories, sizeof(*(jogadores+a)->campeonato->victories), 1, file);
+            fwrite(*(jogadores+a)->campeonato->draws, sizeof(*(jogadores+a)->campeonato->draws), 1, file);
+            fwrite(*(jogadores+a)->campeonato->losses, sizeof(*(jogadores+a)->campeonato->losses), 1, file);
+            fwrite(*(jogadores+a)->campeonato->points, sizeof(*(jogadores+a)->campeonato->losses), 1, file);
+
+        fclose(file);
     }
     else{
         printf("Arquivo nao aberto!");
@@ -355,7 +190,7 @@ void BuscarJogadorNome(JOGADOR *jogadores, string100 chave){
         printf("Ano: %d", ano);
 
         //CPF//
-        int cpf = fread(*(jogadores+i)->CPF->cpf, sizeof(*(jogadores+i)->CPF->cpf), 1, file);
+        int cpf = fread(*(jogadores+i)->cpf, sizeof(*(jogadores+i)->cpf), 1, file);
         printf("CPF: %d", cpf);
 
         //Gênero//
@@ -363,27 +198,27 @@ void BuscarJogadorNome(JOGADOR *jogadores, string100 chave){
         printf("Genero: %s", genero);
 
         //Estado Civil//
-        string100 estadocivil = fread(*(jogadores+i)->estadocivil->civil_state, sizeof(*(jogadores+i)->estadocivil->civil_state), 1, file);
+        string100 estadocivil = fread(*(jogadores+i)->civil, sizeof(*(jogadores+i)->civil), 1, file);
         printf("Estado Civil: %s", estadocivil);
 
         //Equipe//
-        string100 nome_equipe = fread(*(jogadores+i)->equipe->nome_equipe, sizeof(*(jogadores+i)->equipe->nome_equipe), 1, file);
+        string100 nome_equipe = fread(*(jogadores+i)->time->nome_equipe, sizeof(*(jogadores+i)->time->nome_equipe), 1, file);
         printf("Nome Equipe: %s", nome_equipe);
-        string100 nickname_equipe = fread(*(jogadores+i)->equipe->nickname_equipe, sizeof(*(jogadores+i)->equipe->nickname_equipe), 1 ,file); 
+        string100 nickname_equipe = fread(*(jogadores+i)->time->nickname_equipe, sizeof(*(jogadores+i)->time->nickname_equipe), 1 ,file); 
         printf("Nickname Equipe Rede Social: %s", nickname_equipe);               
-        int seguidores_equipe = fread(*(jogadores+i)->equipe->seguidores_equipe, sizeof(*(jogadores+i)->equipe->seguidores_equipe), 1, file);
+        int seguidores_equipe = fread(*(jogadores+i)->time->seguidores->equipe, sizeof(*(jogadores+i)->time->seguidores->equipe), 1, file);
         printf("Seguidores Equipe Rede Social: %d", seguidores_equipe);
 
         //Patrociadora Principal//
-        string100 patrocinadora_principal = fread(*(jogadores+i)->patrocinadora->sponsor, sizeof(*(jogadores+i)->patrocinadora->sponsor), 1, file);
+        string100 patrocinadora_principal = fread(*(jogadores+i)->patrocinadora, sizeof(*(jogadores+i)->patrocinadora), 1, file);
         printf("Patrocinadora Principal: %s", patrocinadora_principal);
 
-        //Rede Socil//
-        string100 rede_social = fread(*(jogadores+i)->redesocial->social_network, sizeof(*(jogadores+i)->redesocial->social_network), 1, file);
+        //Rede Social//
+        string100 rede_social = fread(*(jogadores+i)->redesocial_jogador->nickname_jogador, sizeof(*(jogadores+i)->redesocial_jogador->nickname_jogador), 1, file);
         printf("Rede Social: %s", rede_social);
 
         //Seguidors Rede Social//
-        int seguidores = fread(*(jogadores+i)->seguidores->followers, sizeof(*(jogadores+i)->seguidores->followers), 1, file);
+        int seguidores = fread(*(jogadores+i)->redesocial_jogador->seguidores_jogador, sizeof(*(jogadores+i)->redesocial_jogador->seguidores_jogador), 1, file);
         printf("Seguidores: %d", seguidores);
 
         //Equipmento de Hardware//
@@ -448,7 +283,7 @@ void BuscarJogadorRank(JOGADOR *jogadores, int chave){
         printf("Ano: %d", ano);
 
         //CPF//
-        int cpf = fread(*(jogadores+i)->CPF->cpf, sizeof(*(jogadores+i)->CPF->cpf), 1, file);
+        int cpf = fread(*(jogadores+i)->cpf, sizeof(*(jogadores+i)->cpf), 1, file);
         printf("CPF: %d", cpf);
 
         //Gênero//
@@ -456,27 +291,27 @@ void BuscarJogadorRank(JOGADOR *jogadores, int chave){
         printf("Genero: %s", genero);
 
         //Estado Civil//
-        string100 estadocivil = fread(*(jogadores+i)->estadocivil->civil_state, sizeof(*(jogadores+i)->estadocivil->civil_state), 1, file);
+        string100 estadocivil = fread(*(jogadores+i)->civil, sizeof(*(jogadores+i)->civil), 1, file);
         printf("Estado Civil: %s", estadocivil);
 
         //Equipe//
-        string100 nome_equipe = fread(*(jogadores+i)->equipe->nome_equipe, sizeof(*(jogadores+i)->equipe->nome_equipe), 1, file);
+        string100 nome_equipe = fread(*(jogadores+i)->time->nome_equipe, sizeof(*(jogadores+i)->time->nome_equipe), 1, file);
         printf("Nome Equipe: %s", nome_equipe);
-        string100 nickname_equipe = fread(*(jogadores+i)->equipe->nickname_equipe, sizeof(*(jogadores+i)->equipe->nickname_equipe), 1 ,file); 
+        string100 nickname_equipe = fread(*(jogadores+i)->time->nickname_equipe, sizeof(*(jogadores+i)->time->nickname_equipe), 1 ,file); 
         printf("Nickname Equipe Rede Social: %s", nickname_equipe);               
-        int seguidores_equipe = fread(*(jogadores+i)->equipe->seguidores_equipe, sizeof(*(jogadores+i)->equipe->seguidores_equipe), 1, file);
+        int seguidores_equipe = fread(*(jogadores+i)->time->seguidores->equipe, sizeof(*(jogadores+i)->time->seguidores->equipe), 1, file);
         printf("Seguidores Equipe Rede Social: %d", seguidores_equipe);
 
         //Patrociadora Principal//
-        string100 patrocinadora_principal = fread(*(jogadores+i)->patrocinadora->sponsor, sizeof(*(jogadores+i)->patrocinadora->sponsor), 1, file);
+        string100 patrocinadora_principal = fread(*(jogadores+i)->patrocinadora, sizeof(*(jogadores+i)->patrocinadora), 1, file);
         printf("Patrocinadora Principal: %s", patrocinadora_principal);
 
-        //Rede Socil//
-        string100 rede_social = fread(*(jogadores+i)->redesocial->social_network, sizeof(*(jogadores+i)->redesocial->social_network), 1, file);
+        //Rede Social//
+        string100 rede_social = fread(*(jogadores+i)->redesocial_jogador->nickname_jogador, sizeof(*(jogadores+i)->redesocial_jogador->nickname_jogador), 1, file);
         printf("Rede Social: %s", rede_social);
 
         //Seguidors Rede Social//
-        int seguidores = fread(*(jogadores+i)->seguidores->followers, sizeof(*(jogadores+i)->seguidores->followers), 1, file);
+        int seguidores = fread(*(jogadores+i)->redesocial_jogador->seguidores_jogador, sizeof(*(jogadores+i)->redesocial_jogador->seguidores_jogador), 1, file);
         printf("Seguidores: %d", seguidores);
 
         //Equipmento de Hardware//
@@ -520,7 +355,7 @@ void MostrarMediaSeguidoresJogadores(JOGADOR *jogadores, int n){
     file = fopen("TrabalhoPratico.dat", "rb");
     int soma=0;
     for(int i=0; i<n; i++){
-        int seguidores = fread(*(jogadores+i)->seguidores->followers, sizeof(*(jogadores+i)->seguidores->followers), 1, file);
+        int seguidores = fread(*(jogadores+i)->redesocial_jogador->seguidores_jogador, sizeof(*(jogadores+i)->redesocial_jogador->seguidores_jogador), 1, file);
         soma = soma+seguidores;
     }
     return;
@@ -531,7 +366,7 @@ void CriarVetor_aux(JOGADOR* jogadores, AUX * auxiliar, int n){
     int i;
 
     for(i = 0; i < n; i++){
-        *(auxiliar+i)->nome = *(jogadores+i)->nome;
+        *(auxiliar+i)->nome_aux = *(jogadores+i)->nome;
         *(auxiliar+i)->ranking_aux = *(jogadores+i)->ranking->rank;
         *(auxiliar+i)->vitorias_aux = *(jogadores+i)->campeonato->victories;
         *(auxiliar+i)->pontuacao_aux = *(jogadores+i)->campeonato->points;
@@ -549,11 +384,11 @@ void OrdenarJogadores_alfabeto( AUX*auxiliares, int n){
     
     for(j = 0; j < n; j++){
         for(i = 0; i < n - 1; i++){
-            conferidor = strcmp(*(auxiliares+i)->nome, *(auxiliares+i+1)->nome);
+            conferidor = strcmp(*(auxiliares+i)->nome_aux, *(auxiliares+i+1)->nome_aux);
             if(conferidor > 0){
-                strcpy(aux, *(auxiliares+i)->nome);
-                strcpy(*(auxiliares+i)->nome, *(auxiliares+i+1)->nome);
-                strcpy(*(auxiliares+i+1)->nome, aux);
+                strcpy(aux, *(auxiliares+i)->nome_aux);
+                strcpy(*(auxiliares+i)->nome_aux, *(auxiliares+i+1)->nome_aux);
+                strcpy(*(auxiliares+i+1)->nome_aux, aux);
             }
         }
     }
@@ -561,7 +396,7 @@ void OrdenarJogadores_alfabeto( AUX*auxiliares, int n){
     printf("Lista ordenada dos nomes dos jogadores:\n\n");
 
     for(i = 0; i < n; i++){
-        printf("%s\n", *(auxiliares+i)->nome);
+        printf("%s\n", *(auxiliares+i)->nome_aux);
     }
 
     PularLinha(1);
@@ -609,7 +444,7 @@ void OrdenarJogadores_VetorAux(AUX * auxiliar, int n){
 }
 
 //Ordena os posições dos jogadores em ordem crescente
-void OrdenarJogadores_posicao( AUX * auxiliar, int n,){
+void OrdenarJogadores_posicao( AUX * auxiliar, int n){
     
     OrdenarJogadores_VetorAux(&AUX->ranking_aux, n);
     printf("\nLista ordenada das posições dos jogadores:\n\n");
@@ -623,7 +458,7 @@ void OrdenarJogadores_posicao( AUX * auxiliar, int n,){
 }
 
 //Ordena os jogadores em ordem crescente por número de Vitórias
-void OrdenarJogadores_vitoria ( AUX * auxiliar, int n,){
+void OrdenarJogadores_vitoria ( AUX * auxiliar, int n){
     int i, j, conferidor;
     int aux;
     string100 aux2;
