@@ -14,7 +14,7 @@ typedef enum genero{
 }GENERO;
 
 typedef enum Est_civil{
-    casado, solteiro, divorciado, viúvo
+    casado, solteiro, divorciado, viuvo
 }EST_CIVIL;
 
 //Data de nascimento
@@ -55,6 +55,18 @@ typedef struct ranking{
     int rank;
 }RANKING;
 
+//Struct Equipe//
+typedef struct equipe{
+    string100 nome_equipe;
+    string100 nickname_equipe;
+    int seguidores_equipe;
+}EQUIPE;
+
+//Struct Rede Social//
+typedef struct redesocial{
+    string100 nickname_jogador;
+    int seguidores_jogador;
+}REDESOCIAL;
 
 typedef struct jogador{
     string100 nome;
@@ -62,13 +74,12 @@ typedef struct jogador{
     CPF cpf;
     GENERO genero;
     EST_CIVIL civil;
-    EQUIPE equipe;  
+    EQUIPE time;  
     string100 patrocinadora;
-    string100 nickname_jogador;
-    int seguidores_jogador;
+    REDESOCIAL redesocial_jogador;
     HARDWARE hardware;
     CAMPEONATO campeonato;
-    TITULOS titulo;
+    TITULOS titulos;
     RANKING ranking;
 }JOGADOR;
 
@@ -87,7 +98,7 @@ typedef struct aux{
 void EscreverJogadoresVetor(JOGADOR *jogadores, int n);
 void EscreverJogadoresArquivoBinario(JOGADOR *jogadores, int n);
 void LerJogadoresArquivoBinario(JOGADOR *jogadoreslidos, int n);
-void AlterarDadosJogadorArquivoBinario(JOGADOR *jogadores, int a);
+void AlterarDadosJogadorArquivoBinario(JOGADOR *jogadores, int a, int n);
 void InserirVitoriaEmpateDerrota(JOGADOR *jogadores, int a);
 void BuscarJogadorNome(JOGADOR *jogadores, string100 chave);
 void BuscarJogadorRank(JOGADOR *jogadores, int chave);
@@ -95,12 +106,11 @@ void MostrarMediaSeguidoresJogadores(JOGADOR *jogadores, int n);
 void CriarVetor_aux(JOGADOR* jogadores, AUX * auxiliar, int n);
 void OrdenarJogadores_alfabeto( AUX*auxiliares, int n);
 void OrdenarJogadores_VetorAux(AUX * auxiliar, int n);
-void OrdenarJogadores_posicao( AUX * auxiliar, int n,);
-void OrdenarJogadores_vitoria ( AUX * auxiliar, int n,);
+void OrdenarJogadores_posicao( AUX * auxiliar, int n);
+void OrdenarJogadores_vitoria ( AUX * auxiliar, int n);
 void ListarJogadores_posicaoCampeonato ( AUX * auxiliar, int n, JOGADOR * jogadores);
 void ListarJogadores_PontuacaoMenor (AUX * auxiliar, int n, int limite);
-void ListarJogadores_PontuacaoMaior (AUX * auxiliar, int n, int limite)
+void ListarJogadores_PontuacaoMaior (AUX * auxiliar, int n, int limite);
 
 
 #endif
-
