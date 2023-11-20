@@ -98,7 +98,7 @@ int main(){
                 InserirVitoriaEmpateDerrota(jogadores, a);
                 break;
 
-            case 5:
+             case 5:
                 OrdenarJogadores_alfabeto(auxiliar, n);
                 break;
             
