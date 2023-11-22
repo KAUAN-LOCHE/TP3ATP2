@@ -135,7 +135,7 @@ void LerJogadoresArquivoBinario(JOGADOR *jogadoreslidos, int n){
 
 //Função alterar dados jogador arquivo binario//
 
-void AlterarDadosJogadorArquivoBinario(JOGADOR *jogadores, int a, int n){
+void AlterarDadosJogadorArquivoBinario(int a, int n){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "wb");
     
@@ -241,7 +241,7 @@ void AlterarDadosJogadorArquivoBinario(JOGADOR *jogadores, int a, int n){
 
 //Função atualizar pontuação jogador//
 
-void InserirVitoriaEmpateDerrota(JOGADOR *jogadores, int a, int n){
+void InserirVitoriaEmpateDerrota(int a, int n){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "wb");
     

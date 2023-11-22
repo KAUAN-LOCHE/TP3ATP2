@@ -88,14 +88,14 @@ int main(){
                 int a;
                 printf("Digite numero jogador alterar: ");
                 scanf("%d", &a);
-                AlterarDadosJogadorArquivoBinario(jogadores, a);
+                AlterarDadosJogadorArquivoBinario(a, n);
                 break;
 
             case 4:
                 int a;
                 printf("Digite numero jogador alterar: ");
                 scanf("%d", &a);
-                InserirVitoriaEmpateDerrota(jogadores, a);
+                InserirVitoriaEmpateDerrota(a, n);
                 break;
 
              case 5:
