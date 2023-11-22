@@ -135,11 +135,13 @@ void LerJogadoresArquivoBinario(JOGADOR *jogadoreslidos, int n){
 
 //Função alterar dados jogador arquivo binario//
 
-void AlterarDadosJogadorArquivoBinario(int a){
+void AlterarDadosJogadorArquivoBinario(JOGADOR *jogadores, int a, int n){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "wb");
-    JOGADOR auxiliar[1];
+    
     if(file != NULL){
+
+        JOGADOR auxiliar[1];
 
         for(int i=0; i<1; i++){
             //Nome Jogador//
@@ -239,18 +241,29 @@ void AlterarDadosJogadorArquivoBinario(int a){
 
 //Função atualizar pontuação jogador//
 
-void InserirVitoriaEmpateDerrota(JOGADOR *jogadores, int a){
+void InserirVitoriaEmpateDerrota(JOGADOR *jogadores, int a, int n){
     FILE *file;
-    file = fopen("TrabalhoPratico.dat", "rb+");
+    file = fopen("TrabalhoPratico.dat", "wb");
+    
     if(file != NULL){
-        fseek(file, a*sizeof(JOGADOR), SEEK_SET);
-        //Dados Campeonato//
-            fwrite(jogadores[i].campeonato->victories, sizeof(jogadores[i].campeonato->victories), 1, file);
-            fwrite(jogadores[i].campeonato->draws, sizeof(jogadores[i].campeonato->draws), 1, file);
-            fwrite(jogadores[i].campeonato->losses, sizeof(jogadores[i].campeonato->losses), 1, file);
-            fwrite(jogadores[i].campeonato->points, sizeof(jogadores[i].campeonato->losses), 1, file);
 
+        JOGADOR auxiliar[1];
+
+        for(int i=0; i<1; i++){
+            printf("Digite vitorias: ");
+            scanf("%d", &auxiliar[i].campeonato.victories);
+
+            printf("Digite empates: ");
+            scanf("%d", &auxiliar[i].campeonato.draws);
+
+            printf("Digite derrotas: ");
+            scanf("%d", &auxiliar[i].campeonato.losses);
+        }
+
+        fseek(file, a*sizeof(JOGADOR), SEEK_SET);
+        fwrite(auxiliar, a*sizeof(JOGADOR), 1, file);
         fclose(file);
+        
     }
     else{
         printf("Arquivo nao aberto!");
