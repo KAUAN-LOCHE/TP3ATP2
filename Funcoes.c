@@ -512,34 +512,34 @@ void MostrarMediaSeguidoresJogadores(int n){
     return;
 }
 
-//Cria vetor auxiliar para as funções de listar
-void CriarVetor_aux(JOGADOR* jogadores, AUX * auxiliar, int n){
+//Cria vetor auxiliar para as funÃ§Ãµes de listar
+void CriarVetor_aux(JOGADOR jogadores, AUX auxiliar, int n){
     int i;
-
+    
     for(i = 0; i < n; i++){
-        *(auxiliar+i)->nome_aux = *(jogadores+i)->nome;
-        *(auxiliar+i)->ranking_aux = *(jogadores+i)->ranking->rank;
-        *(auxiliar+i)->vitorias_aux = *(jogadores+i)->campeonato->victories;
-        *(auxiliar+i)->pontuacao_aux = *(jogadores+i)->campeonato->points;
-        *(auxiliar+i)->derrotas_aux = *(jogadores+i)->campeonato->losses;
-        *(auxiliar+i)->empates_aux = *(jogadores+i)->campeonato->draws;
+       strcpy(auxiliar[i].nome_aux, jogadores[i].nome);
+       auxiliar[i].ranking_aux = jogadores[i].ranking.rank;
+       auxiliar[i].vitorias_aux = jogadores[i].campeonato.victories;
+       auxiliar[i].pontuacao_aux = jogadores[i].campeonato.points;
+       auxiliar[i].derrotas_aux = jogadores[i].campeonato.losses;
+       auxiliar[i].empates_aux = jogadores[i].campeonato.draws;
 
     }
 }
 
 
-//ordena os nomes dos jogadores por ordem alfabética
-void OrdenarJogadores_alfabeto( AUX*auxiliares, int n){
+//ordena os nomes dos jogadores por ordem alfabÃ©tica
+void OrdenarJogadores_alfabeto(  int n){
     int i, j, conferidor;
     string100 aux;
-    
+    AUX auxiliares[n];
     for(j = 0; j < n; j++){
         for(i = 0; i < n - 1; i++){
-            conferidor = strcmp(*(auxiliares+i)->nome_aux, *(auxiliares+i+1)->nome_aux);
+            conferidor = strcmp(auxiliares[i].nome_aux, auxiliares[i+1].nome_aux);
             if(conferidor > 0){
-                strcpy(aux, *(auxiliares+i)->nome_aux);
-                strcpy(*(auxiliares+i)->nome_aux, *(auxiliares+i+1)->nome_aux);
-                strcpy(*(auxiliares+i+1)->nome_aux, aux);
+                strcpy(aux,auxiliares[i].nome_aux);
+                strcpy(auxiliares[i].nome_aux, auxiliares[i+1].nome_aux);
+                strcpy(auxiliares[i+1].nome_aux, aux);
             }
         }
     }
@@ -547,7 +547,7 @@ void OrdenarJogadores_alfabeto( AUX*auxiliares, int n){
     printf("Lista ordenada dos nomes dos jogadores:\n\n");
 
     for(i = 0; i < n; i++){
-        printf("%s\n", *(auxiliares+i)->nome_aux);
+        printf("%s\n", auxiliares[i].nome_aux);
     }
 
     PularLinha(1);
@@ -555,38 +555,40 @@ void OrdenarJogadores_alfabeto( AUX*auxiliares, int n){
 }
 
 
-//Ordena todos os jogadores de acordo com a posição no campeonato
-void OrdenarJogadores_VetorAux(AUX * auxiliar, int n){
-    int i, j, conferidor;
+//Ordena todos os jogadores de acordo com a posiÃ§Ã£o no campeonato
+void OrdenarJogadores_VetorAux( int n){
+    int i, j;
     int aux;
     string100 aux2;
+
+    AUX auxiliar[n];
 
     
     for(j = 0; j < n; j++){
         for(i = 0; i < n - 1; i++){
-            if(*(auxiliar+i)->ranking_aux > *(auxiliar+i+1)->ranking_aux){
-                aux = *(auxiliar+i)->ranking_aux;
-                strcpy(aux2, *(auxiliar+1)->nome_aux);
-                *(auxiliar+i)->ranking_aux = *(auxiliar+1+i)->ranking_aux;
-                strcpy(*(auxiliar+i)->nome_aux, *(auxiliar+i+1)->nome_aux);
-                *(auxiliar+i+1)->ranking_aux = aux;
-                strcpy(*(auxiliar+i+1)->nome_aux, aux2);
+            if(auxiliar[i].ranking_aux > auxiliar[i+1].ranking_aux){
+                aux = auxiliar[i].ranking_aux;
+                strcpy(aux2, auxiliar[i].nome_aux);
+                auxiliar[i].ranking_aux = auxiliar[i+1].ranking_aux;
+                strcpy(auxiliar[i].nome_aux, auxiliar[i+1].nome_aux);
+                auxiliar[i+1].ranking_aux = aux;
+                strcpy(auxiliar[i+1].nome_aux, aux2);
 
-                aux = *(auxiliar+1)->vitorias_aux;
-                *(auxiliar+i)->vitorias_aux = *(auxiliar+i+1)->vitorias_aux;
-                *(auxiliar+i+1)->vitorias_aux = aux;
+                aux = auxiliar[i].vitorias_aux;
+                auxiliar[i].vitorias_aux = auxiliar[i+1].vitorias_aux;
+                auxiliar[i+1].vitorias_aux = aux;
 
-                aux = *(auxiliar+1)->derrotas_aux;
-                *(auxiliar+i)->derrotas_aux = *(auxiliar+i+1)->derrotas_aux;
-                *(auxiliar+i+1)->derrotas_aux = aux;
+                aux = auxiliar[i].derrotas_aux;
+                auxiliar[i].derrotas_aux = auxiliar[i+1].derrotas_aux;
+                auxiliar[i+1].derrotas_aux = aux;
 
-                aux = *(auxiliar+1)->pontuacao_aux;
-                *(auxiliar+i)->pontuacao_aux = *(auxiliar+i+1)->pontuacao_aux;
-                *(auxiliar+i+1)->pontuacao_aux = aux;
+                aux = auxiliar[i].pontuacao_aux;
+                auxiliar[i].pontuacao_aux = auxiliar[i+1].pontuacao_aux;
+                auxiliar[i+1].pontuacao_aux = aux;
 
-                aux = *(auxiliar+1)->derrotas_aux;
-                *(auxiliar+i)->derrotas_aux = *(auxiliar+i+1)->derrotas_aux;
-                *(auxiliar+i+1)->derrotas_aux = aux;
+                aux = auxiliar[i].derrotas_aux;
+                auxiliar[i].derrotas_aux = auxiliar[i+1].derrotas_aux;
+                auxiliar[i+1].derrotas_aux = aux;
 
             }
         }
@@ -594,85 +596,94 @@ void OrdenarJogadores_VetorAux(AUX * auxiliar, int n){
 
 }
 
-//Ordena os posições dos jogadores em ordem crescente
-void OrdenarJogadores_posicao( AUX * auxiliar, int n){
-    
-    OrdenarJogadores_VetorAux(&AUX->ranking_aux, n);
-    printf("\nLista ordenada das posições dos jogadores:\n\n");
+//Ordena os posiÃ§Ãµes dos jogadores em ordem crescente
+void OrdenarJogadores_posicao( int n){
+    int i;
+    AUX auxiliar[n];
+    OrdenarJogadores_VetorAux( n);
+    printf("\nLista ordenada das posiÃ§Ãµes dos jogadores:\n\n");
 
     for(i = 0; i < n; i++){
-        printf("%s, %dª posição!\n", *(auxiliar+i)->ranking_aux, *(auxiliar+i)->ranking_aux);
+        printf("%s, %dÂª posiÃ§Ã£o!\n", auxiliar[i].nome_aux, auxiliar[i].ranking_aux);
     }
 
     PularLinha(1);
 
 }
 
-//Ordena os jogadores em ordem crescente por número de Vitórias
-void OrdenarJogadores_vitoria ( AUX * auxiliar, int n){
-    int i, j, conferidor;
+//Ordena os jogadores em ordem crescente por nÃºmero de VitÃ³rias
+void OrdenarJogadores_vitoria ( int n){
+    int i, j;
     int aux;
     string100 aux2;
+
+    AUX auxiliar[n];
 
     
     for(j = 0; j < n; j++){
         for(i = 0; i < n - 1; i++){
-            if(*(auxiliar+i)->vitorias_aux < *(auxiliar+i+1)->vitorias_aux){
-                aux = *(auxiliar+i)->vitorias_aux;
-                strcpy(aux2, *(auxiliar+1)->nome_aux);
-                *(auxiliar+i)->vitorias_aux = *(auxiliar+1+i)->vitorias_aux;
-                strcpy(*(auxiliar+i)->nome_aux, *(auxiliar+i+1)->nome_aux);
-                *(auxiliar+i+1)->vitorias_aux = aux;
-                strcpy(*(auxiliar+i+1)->nome_aux, aux2);
+            if(auxiliar[i].vitorias_aux < auxiliar[i+1].vitorias_aux){
+                aux = auxiliar[i].vitorias_aux;
+                strcpy(aux2, auxiliar[i].nome_aux);
+                auxiliar[i].vitorias_aux = auxiliar[i+1].vitorias_aux;
+                strcpy(auxiliar[i].nome_aux,auxiliar[i+1].nome_aux);
+                auxiliar[i+1].vitorias_aux = aux;
+                strcpy(auxiliar[i+1].nome_aux, aux2);
 
             }
         }
     }
 
-    printf("\nLista ordenada das posições dos jogadores:\n\n");
+    printf("\nLista ordenada das posiÃ§Ãµes dos jogadores:\n\n");
 
     for(i = 0; i < n; i++){
-        printf("%s, %d vitórias!\n", *(auxiliar+i)->vitorias_aux, *(auxiliar+i)->vitorias_aux);
+        printf("%s, %d vitÃ³rias!\n", auxiliar[i].nome_aux, auxiliar[i].vitorias_aux);
     }
 
     PularLinha(1);
 
 }
 
-//Mostrar (listar) classificação do campeonato com nome, posição no campeonato, pontuação, quantidade de vitorias, derrotas e empates.
-void ListarJogadores_posicaoCampeonato ( AUX * auxiliar, int n, JOGADOR * jogadores){
-    OrdenarJogadores_VetorAux(&AUX->ranking_aux, n);
+//Mostrar (listar) classificaÃ§Ã£o do campeonato com nome, posiÃ§Ã£o no campeonato, pontuaÃ§Ã£o, quantidade de vitorias, derrotas e empates.
+void ListarJogadores_posicaoCampeonato (  int n){
+    AUX auxiliar[n];
+    OrdenarJogadores_VetorAux( n);
 
     for(int i = 0; i < n; i++){
 
-        printf("Nome: %s; %dª posição; Pontuação: %d; Vitórias: %d; Derrotas: %d; Empates: %d\n", *(auxiliar+i)->nome_aux, *(auxiliar)->ranking_aux, *(auxiliar)->pontuacao_aux, *(auxiliar)->vitorias_aux, *(auxiliar)->derrotas_aux, *(auxiliar)->empates_aux);
+        printf("Nome: %s; %dÂª posiÃ§Ã£o; PontuaÃ§Ã£o: %d; VitÃ³rias: %d; Derrotas: %d; Empates: %d\n", auxiliar[i].nome_aux, auxiliar[i].ranking_aux, auxiliar[i].pontuacao_aux, auxiliar[i].vitorias_aux, auxiliar[i].derrotas_aux, auxiliar[i].empates_aux);
     }
 }
 
-//Lista jogadores com pontuação menor que um determinado numero
-void ListarJogadores_PontuacaoMenor (AUX * auxiliar, int n, int limite){
+//Lista jogadores com pontuaÃ§Ã£o menor que um determinado numero
+void ListarJogadores_PontuacaoMenor (int n, int limite){
     int i;
 
-    printf("Jogadores com pontuação menor que %d:\n", limite);
+    AUX auxiliar[n];
+    printf("Jogadores com pontuaÃ§Ã£o menor que %d:\n", limite);
     for(i = 0; i < n; i++){
-        if(*(auxiliar+i)->pontuacao_aux < limite){
-            printf("Nome: %s - %d pontos!\n", *(auxiliar+i)->nome_aux, *(auxiliar+i)->pontuacao_aux);
+        if(auxiliar[i].pontuacao_aux < limite){
+            printf("Nome: %s - %d pontos!\n", auxiliar[i].nome_aux, auxiliar[i].pontuacao_aux);
         }
     }
     
 }
 
-void ListarJogadores_PontuacaoMaior (AUX * auxiliar, int n, int limite){
+void ListarJogadores_PontuacaoMaior (int n, int limite){
     int i;
-
-    printf("Jogadores com pontuação maior que %d:\n", limite);
+    AUX auxiliar[n];
+    printf("Jogadores com pontuaÃ§Ã£o maior que %d:\n", limite);
     for(i = 0; i < n; i++){
-        if(*(auxiliar+i)->pontuacao_aux > limite){
-            printf("Nome: %s - %d pontos!\n", *(auxiliar+i)->nome_aux, *(auxiliar+i)->pontuacao_aux);
+        if(auxiliar[i].pontuacao_aux > limite){
+            printf("Nome: %s - %d pontos!\n", auxiliar[i].nome_aux, auxiliar[i].pontuacao_aux);
         }
     }
     
 }
+
+
+
+
 
 
 
