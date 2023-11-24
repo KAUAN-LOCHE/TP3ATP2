@@ -55,6 +55,7 @@ int main(){
 
     CriarVetor_aux(jogadores, auxiliar, n);
 
+    int limite;
     
     int opcao;
     do{
@@ -73,7 +74,7 @@ int main(){
         printf("12 - Buscar jogador por rank mundial;\n");
         printf("13 - Mostrar media seguidores jogadores;\n");
         printf("14 - Sair");
-
+        scanf("%d", &opcao);
         switch (opcao){
             case 1:
                 EscreverJogadoresVetor(jogadores, n);
@@ -98,41 +99,40 @@ int main(){
                 InserirVitoriaEmpateDerrota(a, n);
                 break;
 
+            
              case 5:
-                OrdenarJogadores_alfabeto(auxiliar, n);
+                OrdenarJogadores_alfabeto( n);
                 break;
             
             case 6:
-                OrdenarJogadores_posicao(auxiliar, n);
+                OrdenarJogadores_posicao( n);
                 break;
             
             case 7:
-                OrdenarJogadores_vitoria(auxiliar, n);
+                OrdenarJogadores_vitoria( n);
                 break;
             
             case 8:
-                ListarJogadores_posicaoCampeonato(auxiliar, n);
+                ListarJogadores_posicaoCampeonato(n);
                 break;
             
             case 9:
-                int limite;
-                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuação maior: ");
+                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuaÃ§Ã£o maior: ");
                 scanf("%d", &limite);
-                ListarJogadores_PontuacaoMaior(auxiliar, n, limite );
+                ListarJogadores_PontuacaoMaior(n, limite );
                 break;
             
             case 10:
-                int limite;
-                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuação menor: ");
+                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuaÃ§Ã£o menor: ");
                 scanf("%d", &limite);
-                ListarJogadores_PontuacaoMenor(auxiliar, n , limite);
+                ListarJogadores_PontuacaoMenor( n , limite);
                 break;
             
             case 11:
-                string100 chave;
+                string100 chavess;
                 printf("Digite nome: ");
                 gets(chave);
-                BuscarJogadorNome(chave);
+                BuscarJogadorNome(chaves);
                 break;
 
             case 12:
