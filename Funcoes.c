@@ -273,30 +273,32 @@ void InserirVitoriaEmpateDerrota(int a, int n){
 
 //Função buscar jogador por nome//
 
-void BuscarJogadorNome(JOGADOR *jogadores, string100 chave, int n){
+void BuscarJogadorNome(string100 chave){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "rb");
     if(file != NULL){
+        fseek(file, 0, SEEK_END);
+        int tamanhoArquivo = ftell(file);
+        fseek(file, 0, SEEK_SET);
+        JOGADOR jogadores[tamanhoArquivo];
+        fread(jogadores, sizeof(JOGADOR), tamanhoArquivo, file);
+
         int i=0;
-        while(strcmp(fread(jogadores[i].nome, sizeof(jogadores[i].nome), 1, file), chave)!=0){
+        while(strcmp(jogadores[i].nome, chave)!=0){
             i++;
         }
         i++;
+
         //Nascimento//
-        int dia = fread(jogadores[i].data.dia, sizeof(jogadores[i].data.dia), 1, file);
-        printf("Dia: %d", dia);
-        int mes = fread(jogadores[i].data.mes, sizeof(jogadores[i].data.mes), 1, file);
-        printf("Mes: %d", mes);
-        int ano = fread(jogadores[i].data.ano, sizeof(jogadores[i].data.ano), 1, file);
-        printf("Ano: %d", ano);
+        printf("Dia: %d", jogadores[i].data.dia);
+        printf("Mes: %d", jogadores[i].data.mes);
+        printf("Ano: %d", jogadores[i].data.ano);
 
         //CPF//
-        int cpf = fread(jogadores[i].cpf, sizeof(jogadores[i].cpf), 1, file);
-        printf("CPF: %d", cpf);
+        printf("CPF: %d", jogadores[i].cpf);
 
         //Gênero//
-        int genero = fread(jogadores[i].genero, sizeof(jogadores[i].genero), 1, file);
-        if(genero == 0){
+        if(jogadores[i].genero == 0){
             printf("Gênero: Masculino");
         }
         else{
@@ -304,74 +306,63 @@ void BuscarJogadorNome(JOGADOR *jogadores, string100 chave, int n){
         }
         
         //Estado Civil//
-        string100 estadocivil = fread(jogadores[i].civil, sizeof(jogadores[i].civil), 1, file);
-        printf("Estado Civil: %s", estadocivil);
+        printf("Estado Civil: %s", jogadores[i].civil);
 
         //Equipe//
-        string100 nome_equipe = fread(jogadores[i].time.nome_equipe, sizeof(jogadores[i].time.nome_equipe), 1, file);
-        printf("Nome Equipe: %s", nome_equipe);
-        string100 nickname_equipe = fread(jogadores[i].time.nickname_equipe, sizeof(jogadores[i].time.nickname_equipe), 1 ,file); 
-        printf("Nickname Equipe Rede Social: %s", nickname_equipe);               
-        int seguidores_equipe = fread(jogadores[i].time.seguidores_equipe, sizeof(jogadores[i].time.seguidores_equipe), 1, file);
-        printf("Seguidores Equipe Rede Social: %d", seguidores_equipe);
+        printf("Nome Equipe: %s", jogadores[i].time.nome_equipe);
+        printf("Nickname Equipe Rede Social: %s", jogadores[i].time.nickname_equipe);               
+        printf("Seguidores Equipe Rede Social: %d", jogadores[i].time.seguidores_equipe);
 
         //Patrociadora Principal//
-        string100 patrocinadora_principal = fread(jogadores[i].patrocinadora, sizeof(jogadores[i].patrocinadora), 1, file);
-        printf("Patrocinadora Principal: %s", patrocinadora_principal);
+        printf("Patrocinadora Principal: %s", jogadores[i].patrocinadora);
 
         //Rede Social//
-        string100 rede_social = fread(jogadores[i].redesocial_jogador.nickname_jogador, sizeof(jogadores[i].redesocial_jogador.nickname_jogador), 1, file);
-        printf("Rede Social: %s", rede_social);
+        printf("Rede Social: %s", jogadores[i].redesocial_jogador.nickname_jogador);
 
         //Seguidors Rede Social//
-        int seguidores = fread(jogadores[i].redesocial_jogador.seguidores_jogador, sizeof(jogadores[i].redesocial_jogador.seguidores_jogador), 1, file);
-        printf("Seguidores: %d", seguidores);
+        printf("Seguidores: %d", jogadores[i].redesocial_jogador.seguidores_jogador);
 
         //Equipmento de Hardware//
         if(jogadores[i].hardware.computer==0){
-            string100 desktop = fread("Desktop", sizeof(jogadores[i].hardware.computer), 1, file);
-            printf("Computador: %s", desktop);
+            printf("Computador: Desktop");
         }
         else{
-            string100 laptop = fread("Laptop", sizeof(jogadores[i].hardware.computer), 1, file);
-            printf("Computador: %s", laptop);
+            printf("Computador: Laptop");
         }
-        string100 cpu = fread(jogadores[i].hardware.cpu, sizeof(jogadores[i].hardware.cpu), 1, file);
-        printf("CPU: %s", cpu);
-        string100 gpu = fread(jogadores[i].hardware.gpu, sizeof(jogadores[i].hardware.gpu), 1, file);
-        printf("GPU: %S", gpu);
-        int ram = fread(jogadores[i].hardware.ram, sizeof(jogadores[i].hardware.ram), 1, file);
-        printf("RAM: %d", ram);
+        printf("CPU: %s", jogadores[i].hardware.cpu);
+        printf("GPU: %S", jogadores[i].hardware.gpu);
+        printf("RAM: %d", jogadores[i].hardware.ram);
 
         //Dados Campeonato//
-        int vitorias = fread(jogadores[i].campeonato.victories, sizeof(jogadores[i].campeonato.victories), 1, file);
-        printf("Vitorias: %d", vitorias);
-        int empates = fread(jogadores[i].campeonato.draws, sizeof(jogadores[i].campeonato.draws), 1, file);
-        printf("Empates: %d", empates);
-        int derrotas = fread(jogadores[i].campeonato.losses, sizeof(jogadores[i].campeonato.losses), 1, file);
-        printf("Derrotas: %d", derrotas);
-        int pontos = fread(jogadores[i].campeonato.points, sizeof(jogadores[i].campeonato.losses), 1, file);
-        printf("Pontos: %d", pontos);
+        printf("Vitorias: %d", jogadores[i].campeonato.victories);
+        printf("Empates: %d", jogadores[i].campeonato.draws);
+        printf("Derrotas: %d", jogadores[i].campeonato.losses);
+        printf("Pontos: %d", jogadores[i].campeonato.points);
 
         //Títulos mundiais//
-        int titulos = fread(jogadores[i].titulos.titles, sizeof(jogadores[i].titulos.titles), 1, file);
-        printf("Titulos: %d", titulos);
+        printf("Titulos: %d", jogadores[i].titulos.titles);
 
         //Ranking//
-        int rank = fread(jogadores[i].ranking.rank, sizeof(jogadores[i].ranking.rank), 1, file);
-        printf("Rank: %d");
+        printf("Rank: %d", jogadores[i].ranking.rank);
+        
     }
     return;
 }
 
 //Função buscar jogador por rank//
 
-void BuscarJogadorRank(JOGADOR *jogadores, int chave){
+void BuscarJogadorRank(int chave){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "rb");
     if(file != NULL){
+        fseek(file, 0, SEEK_END);
+        int tamanhoArquivo = ftell(file);
+        fseek(file, 0, SEEK_SET);
+        JOGADOR jogadores[tamanhoArquivo];
+        fread(jogadores, sizeof(JOGADOR), tamanhoArquivo, file);
+
         int i=0;
-        while(fread(jogadores[i].ranking.rank, sizeof(jogadores[i].ranking.rank), 1, file)!=chave){
+        while(jogadores[i].ranking.rank != chave){
             i++;
         }
         i++;
@@ -380,75 +371,58 @@ void BuscarJogadorRank(JOGADOR *jogadores, int chave){
         string100 nome = fread(jogadores[i].nome, sizeof(jogadores[i].nome), 1, file);
         printf("Nome: %s", nome);
 
-        //Nascimento//
-        int dia = fread(jogadores[i].data.dia, sizeof(jogadores[i].data.dia), 1, file);
-        printf("Dia: %d", dia);
-        int mes = fread(jogadores[i].data.mes, sizeof(jogadores[i].data.mes), 1, file);
-        printf("Mes: %d", mes);
-        int ano = fread(jogadores[i].data.ano, sizeof(jogadores[i].data.ano), 1, file);
-        printf("Ano: %d", ano);
+         //Nascimento//
+        printf("Dia: %d", jogadores[i].data.dia);
+        printf("Mes: %d", jogadores[i].data.mes);
+        printf("Ano: %d", jogadores[i].data.ano);
 
         //CPF//
-        int cpf = fread(jogadores[i].cpf, sizeof(jogadores[i].cpf), 1, file);
-        printf("CPF: %d", cpf);
+        printf("CPF: %d", jogadores[i].cpf);
 
         //Gênero//
-        string100 genero = fread(jogadores[i].genero, sizeof(jogadores[i].genero), 1, file);
-        printf("Genero: %s", genero);
-
+        if(jogadores[i].genero == 0){
+            printf("Gênero: Masculino");
+        }
+        else{
+            printf("Gênero: Feminino");
+        }
+        
         //Estado Civil//
-        string100 estadocivil = fread(jogadores[i].civil, sizeof(jogadores[i].civil), 1, file);
-        printf("Estado Civil: %s", estadocivil);
+        printf("Estado Civil: %s", jogadores[i].civil);
 
         //Equipe//
-        string100 nome_equipe = fread(jogadores[i].time.nome_equipe, sizeof(jogadores[i].time.nome_equipe), 1, file);
-        printf("Nome Equipe: %s", nome_equipe);
-        string100 nickname_equipe = fread(jogadores[i].time.nickname_equipe, sizeof(jogadores[i].time.nickname_equipe), 1 ,file); 
-        printf("Nickname Equipe Rede Social: %s", nickname_equipe);               
-        int seguidores_equipe = fread(jogadores[i].time.seguidores_equipe, sizeof(jogadores[i].time.seguidores_equipe), 1, file);
-        printf("Seguidores Equipe Rede Social: %d", seguidores_equipe);
+        printf("Nome Equipe: %s", jogadores[i].time.nome_equipe);
+        printf("Nickname Equipe Rede Social: %s", jogadores[i].time.nickname_equipe);               
+        printf("Seguidores Equipe Rede Social: %d", jogadores[i].time.seguidores_equipe);
 
         //Patrociadora Principal//
-        string100 patrocinadora_principal = fread(jogadores[i].patrocinadora, sizeof(jogadores[i].patrocinadora), 1, file);
-        printf("Patrocinadora Principal: %s", patrocinadora_principal);
+        printf("Patrocinadora Principal: %s", jogadores[i].patrocinadora);
 
         //Rede Social//
-        string100 rede_social = fread(jogadores[i].redesocial_jogador.nickname_jogador, sizeof(jogadores[i].redesocial_jogador.nickname_jogador), 1, file);
-        printf("Rede Social: %s", rede_social);
+        printf("Rede Social: %s", jogadores[i].redesocial_jogador.nickname_jogador);
 
         //Seguidors Rede Social//
-        int seguidores = fread(jogadores[i].redesocial_jogador.seguidores_jogador, sizeof(jogadores[i].redesocial_jogador.seguidores_jogador), 1, file);
-        printf("Seguidores: %d", seguidores);
+        printf("Seguidores: %d", jogadores[i].redesocial_jogador.seguidores_jogador);
 
         //Equipmento de Hardware//
         if(jogadores[i].hardware.computer==0){
-            string100 desktop = fread("Desktop", sizeof(jogadores[i].hardware.computer), 1, file);
-            printf("Computador: %s", desktop);
+            printf("Computador: Desktop");
         }
         else{
-            string100 laptop = fread("Laptop", sizeof(jogadores[i].hardware.computer), 1, file);
-            printf("Computador: %s", laptop);
+            printf("Computador: Laptop");
         }
-        string100 cpu = fread(jogadores[i].hardware.cpu, sizeof(jogadores[i].hardware.cpu), 1, file);
-        printf("CPU: %s", cpu);
-        string100 gpu = fread(jogadores[i].hardware.gpu, sizeof(jogadores[i].hardware.gpu), 1, file);
-        printf("GPU: %S", gpu);
-        int ram = fread(jogadores[i].hardware.ram, sizeof(jogadores[i].hardware.ram), 1, file);
-        printf("RAM: %d", ram);
+        printf("CPU: %s", jogadores[i].hardware.cpu);
+        printf("GPU: %S", jogadores[i].hardware.gpu);
+        printf("RAM: %d", jogadores[i].hardware.ram);
 
         //Dados Campeonato//
-        int vitorias = fread(jogadores[i].campeonato.victories, sizeof(jogadores[i].campeonato.victories), 1, file);
-        printf("Vitorias: %d", vitorias);
-        int empates = fread(jogadores[i].campeonato.draws, sizeof(jogadores[i].campeonato.draws), 1, file);
-        printf("Empates: %d", empates);
-        int derrotas = fread(jogadores[i].campeonato.losses, sizeof(jogadores[i].campeonato.losses), 1, file);
-        printf("Derrotas: %d", derrotas);
-        int pontos = fread(jogadores[i].campeonato.points, sizeof(jogadores[i].campeonato.losses), 1, file);
-        printf("Pontos: %d", pontos);
+        printf("Vitorias: %d", jogadores[i].campeonato.victories);
+        printf("Empates: %d", jogadores[i].campeonato.draws);
+        printf("Derrotas: %d", jogadores[i].campeonato.losses);
+        printf("Pontos: %d", jogadores[i].campeonato.points);
 
         //Títulos mundiais//
-        int titulos = fread(jogadores[i].titulos.titles, sizeof(jogadores[i].titulos.titles), 1, file);
-        printf("Titulos: %d", titulos);
+        printf("Titulos: %d", jogadores[i].titulos.titles);
 
     }
     return;
@@ -456,13 +430,17 @@ void BuscarJogadorRank(JOGADOR *jogadores, int chave){
 
 //Função mostrar média seguidores jogadores//
 
-void MostrarMediaSeguidoresJogadores(JOGADOR *jogadores, int n){
+void MostrarMediaSeguidoresJogadores(int n){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "rb");
+    fseek(file, 0, SEEK_END);
+    int tamanhoArquivo = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    JOGADOR jogadores[tamanhoArquivo];
+
     int soma=0;
     for(int i=0; i<n; i++){
-        int seguidores = fread(jogadores[i].redesocial_jogador.seguidores_jogador, sizeof(jogadores[i].redesocial_jogador.seguidores_jogador), 1, file);
-        soma = soma+seguidores;
+        soma = soma+jogadores[i].redesocial_jogador.seguidores_jogador;
     }
     return;
 }
