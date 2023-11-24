@@ -1,41 +1,41 @@
-//✓Nome do Jogador
-//✓Data de Nascimento
-//✓CPF
-//✓Gênero
-//✓ Estado civil
-//✓ Equipe
-//➢ Nome
-//➢ Nickname da rede social
-//➢ Número de seguidores na rede social
-//✓ Patrocinadora principal
-//✓ Nickname da rede social
-//✓ Número de seguidores em redes sociais
+//âNome do Jogador
+//âData de Nascimento
+//âCPF
+//âGÃªnero
+//â Estado civil
+//â Equipe
+//â¢ Nome
+//â¢ Nickname da rede social
+//â¢ NÃºmero de seguidores na rede social
+//â Patrocinadora principal
+//â Nickname da rede social
+//â NÃºmero de seguidores em redes sociais
 
-// ✓ Equipamento de Hardware
-// ➢ Modelo do computador/notebook
-// ➢ Processador
-// ➢ Placa de vídeo
-// ➢ Quantidade de Memória RAM
-// ✓ Dados do campeonato
-// ➢ Pontuação no campeonato
-// ➢ Quantidade de vitórias (3 pontos por vitória)
-// ➢ Quantidade de derrotas (0 pontos por derrota)
-// ➢ Quantidade de empates (1 ponto por empate)
-// ✓ Quantidade de títulos que o jogador ganhou
-// ✓ Posição do rank mundial
+// â Equipamento de Hardware
+// â¢ Modelo do computador/notebook
+// â¢ Processador
+// â¢ Placa de vÃ­deo
+// â¢ Quantidade de MemÃ³ria RAM
+// â Dados do campeonato
+// â¢ PontuaÃ§Ã£o no campeonato
+// â¢ Quantidade de vitÃ³rias (3 pontos por vitÃ³ria)
+// â¢ Quantidade de derrotas (0 pontos por derrota)
+// â¢ Quantidade de empates (1 ponto por empate)
+// â Quantidade de tÃ­tulos que o jogador ganhou
+// â PosiÃ§Ã£o do rank mundial
 
-//✓Funções para a escrita e leitura de diferentes jogadores e de todos os dados que o norteiam. Assim possibilitando cadastro de jogadores.
-//✓ Possibilitar a alteração, ou seja, correção dos dados de um jogador.
-//✓ Inserir vitória, derrota ou empate para um jogador e com isso atualizar sua pontuação no campeonato.
-//✓ Listar todos os jogadores ordem alfabética
-//✓ Listar todos os jogadores por ordem de sua posição no rank mundial
-//✓ Listar jogadores que possuem maior número de vitórias no campeonato
-//✓ Mostrar (listar) classificação do campeonato com nome, posição no campeonato, pontuação, quantidade de vitorias, derrotas e empates.
-//✓ Listar jogadores com pontuação no campeonato maior que um certo valor
-// ✓ Listar jogadores com pontuação no campeonato menor que um certo valor
-// ✓ Buscar um jogador por nome
-// ✓ Buscar um jogador por posição no rank mundial
-// ✓ Mostrar a quantidade média de seguidores de um jogador do campeonato, ou seja, um jogador do campeonato possui em média quantos seguidores.
+//âFunÃ§Ãµes para a escrita e leitura de diferentes jogadores e de todos os dados que o norteiam. Assim possibilitando cadastro de jogadores.
+//â Possibilitar a alteraÃ§Ã£o, ou seja, correÃ§Ã£o dos dados de um jogador.
+//â Inserir vitÃ³ria, derrota ou empate para um jogador e com isso atualizar sua pontuaÃ§Ã£o no campeonato.
+//â Listar todos os jogadores ordem alfabÃ©tica
+//â Listar todos os jogadores por ordem de sua posiÃ§Ã£o no rank mundial
+//â Listar jogadores que possuem maior nÃºmero de vitÃ³rias no campeonato
+//â Mostrar (listar) classificaÃ§Ã£o do campeonato com nome, posiÃ§Ã£o no campeonato, pontuaÃ§Ã£o, quantidade de vitorias, derrotas e empates.
+//â Listar jogadores com pontuaÃ§Ã£o no campeonato maior que um certo valor
+// â Listar jogadores com pontuaÃ§Ã£o no campeonato menor que um certo valor
+// â Buscar um jogador por nome
+// â Buscar um jogador por posiÃ§Ã£o no rank mundial
+// â Mostrar a quantidade mÃ©dia de seguidores de um jogador do campeonato, ou seja, um jogador do campeonato possui em mÃ©dia quantos seguidores.
 
 #include <stdio.h>
 #include <string.h>
@@ -44,7 +44,7 @@
 #include "Funcoes.h"
 
 int main(){
-    //Menu e utilizacao funções//
+    //Menu e utilizacao funÃ§Ãµes//
     int n;
     printf("Este e um programa para manipular structs de jogadores gravados em arquivos binarios\n");
     printf("Digite quantidade de jogadores: ");
@@ -53,8 +53,9 @@ int main(){
     JOGADOR jogadores[n], jogadoreslidos[n];
     AUX auxiliar[n];
 
-    CriarVetor_aux(jogadores, auxiliar, n);
-
+   // CriarVetor_aux(jogadores, auxiliar, n);
+    string100 chaves;
+    int limite, a, chave;
     
     int opcao;
     do{
@@ -73,7 +74,7 @@ int main(){
         printf("12 - Buscar jogador por rank mundial;\n");
         printf("13 - Mostrar media seguidores jogadores;\n");
         printf("14 - Sair");
-
+        scanf("%d", &opcao);
         switch (opcao){
             case 1:
                 EscreverJogadoresVetor(jogadores, n);
@@ -85,65 +86,59 @@ int main(){
                 break;
 
             case 3:
-                int a;
                 printf("Digite numero jogador alterar: ");
                 scanf("%d", &a);
                 AlterarDadosJogadorArquivoBinario(a, n);
                 break;
 
             case 4:
-                int a;
                 printf("Digite numero jogador alterar: ");
                 scanf("%d", &a);
                 InserirVitoriaEmpateDerrota(a, n);
                 break;
 
              case 5:
-                OrdenarJogadores_alfabeto(auxiliar, n);
+                OrdenarJogadores_alfabeto( n);
                 break;
             
             case 6:
-                OrdenarJogadores_posicao(auxiliar, n);
+                OrdenarJogadores_posicao( n);
                 break;
             
             case 7:
-                OrdenarJogadores_vitoria(auxiliar, n);
+                OrdenarJogadores_vitoria( n);
                 break;
             
             case 8:
-                ListarJogadores_posicaoCampeonato(auxiliar, n);
+                ListarJogadores_posicaoCampeonato(n);
                 break;
             
             case 9:
-                int limite;
-                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuação maior: ");
+                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuaÃ§Ã£o maior: ");
                 scanf("%d", &limite);
-                ListarJogadores_PontuacaoMaior(auxiliar, n, limite );
+                ListarJogadores_PontuacaoMaior(n, limite );
                 break;
             
             case 10:
-                int limite;
-                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuação menor: ");
+                printf("Digite o liimite de pontos para que seja listado os jogadores com pontuaÃ§Ã£o menor: ");
                 scanf("%d", &limite);
-                ListarJogadores_PontuacaoMenor(auxiliar, n , limite);
+                ListarJogadores_PontuacaoMenor( n , limite);
                 break;
             
             case 11:
-                string100 chave;
                 printf("Digite nome: ");
-                gets(chave);
-                BuscarJogadorNome(jogadoreslidos, chave);
+                gets(chaves);
+                BuscarJogadorNome(jogadoreslidos, chaves);
                 break;
 
             case 12:
-                int chave;
                 printf("Digite rank: ");
                 scanf("%d", &chave);
                 BuscarJogadorRank(jogadoreslidos, chave);
                 break;
 
             case 13:
-                MostrarMediaSeguidoresJogadores(jogadoreslidos, n);
+                MostrarMediaSeguidoresJogadores( n);
                 break;
 
             case 14:
