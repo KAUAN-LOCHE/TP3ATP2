@@ -132,18 +132,18 @@ int main(){
                 string100 chave;
                 printf("Digite nome: ");
                 gets(chave);
-                BuscarJogadorNome(jogadoreslidos, chave);
+                BuscarJogadorNome(chave);
                 break;
 
             case 12:
                 int chave;
                 printf("Digite rank: ");
                 scanf("%d", &chave);
-                BuscarJogadorRank(jogadoreslidos, chave);
+                BuscarJogadorRank(chave);
                 break;
 
             case 13:
-                MostrarMediaSeguidoresJogadores(jogadoreslidos, n);
+                MostrarMediaSeguidoresJogadores(n);
                 break;
 
             case 14:
