@@ -75,10 +75,15 @@ int main(){
         printf("13 - Mostrar media seguidores jogadores;\n");
         printf("14 - Sair");
         scanf("%d", &opcao);
+
+        string100 chaves;
+        int a;
+
+
         switch (opcao){
             case 1:
-                EscreverJogadoresVetor(jogadores, n);
-                EscreverJogadoresArquivoBinario(jogadores, n);
+                EscreverJogadoresVetor(n);
+                EscreverJogadoresArquivoBinario(n);
                 break;
 
             case 2:
@@ -86,17 +91,15 @@ int main(){
                 break;
 
             case 3:
-                int a;
                 printf("Digite numero jogador alterar: ");
                 scanf("%d", &a);
                 AlterarDadosJogadorArquivoBinario(a, n);
                 break;
 
             case 4:
-                int a;
                 printf("Digite numero jogador alterar: ");
                 scanf("%d", &a);
-                InserirVitoriaEmpateDerrota(a, n);
+                InserirVitoriaEmpateDerrota(a);
                 break;
 
             
@@ -129,9 +132,8 @@ int main(){
                 break;
             
             case 11:
-                string100 chavess;
                 printf("Digite nome: ");
-                gets(chave);
+                gets(chaves);
                 BuscarJogadorNome(chaves);
                 break;
 

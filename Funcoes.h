@@ -95,8 +95,7 @@ typedef struct aux{
 
 
 
-void EscreverJogadoresVetor(JOGADOR jogadores, int n);
-void EscreverJogadoresArquivoBinario(int n);
+void EscreverJogadoresVetor(int n);
 void LerJogadoresArquivoBinario();
 void AlterarDadosJogadorArquivoBinario(int a, int n);
 void InserirVitoriaEmpateDerrota(int a);

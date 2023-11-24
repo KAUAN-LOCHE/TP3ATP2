@@ -12,9 +12,10 @@ void PularLinha(int num){
     }
 }
 
-//Função Escrever Jogadores Vetor//
+//Função Escrever Jogadores Vetor e no Arquivo Binario//
 
-void EscreverJogadoresVetor(JOGADOR jogadores[], int n){
+void EscreverJogadoresVetor(int n){
+    JOGADOR jogadores[n];
     for(int i=0; i<n; i++){
         //Nome Jogador//
         printf("Nome jogador: ");
@@ -99,22 +100,19 @@ void EscreverJogadoresVetor(JOGADOR jogadores[], int n){
         //Ranking//
         printf("Ranking: ");
         scanf("%d", &jogadores[i].ranking.rank);
-    }
-    return;
-}
 
-//Função para Escrever Vetor no Arquivo Binário//
+        //Escrever Vetor no Arquivo Binario//
 
-void EscreverJogadoresArquivoBinario(int n){
-    FILE *file;
-    file = fopen("TrabalhoPratico.dat", "wb");
-    if(file != NULL){
-        JOGADOR jogadores[n];
-        fwrite(jogadores, sizeof(JOGADOR), n, file);
-    }
-    
-    else{
-        printf("Arquivo nao aberto!");
+        FILE *file;
+        file = fopen("TrabalhoPratico.dat", "wb");
+        if(file != NULL){
+            JOGADOR jogadores[n];
+            fwrite(jogadores, sizeof(JOGADOR), n, file);
+        }
+        
+        else{
+            printf("Arquivo nao aberto!");
+        }
     }
     return;
 }
@@ -505,10 +503,12 @@ void MostrarMediaSeguidoresJogadores(int n){
     fseek(file, 0, SEEK_SET);
     JOGADOR jogadores[tamanhoArquivo];
 
-    int soma=0;
+    int soma=0, media=0;
+
     for(int i=0; i<n; i++){
         soma = soma+jogadores[i].redesocial_jogador.seguidores_jogador;
     }
+    media = soma/tamanhoArquivo;
     return;
 }
 
