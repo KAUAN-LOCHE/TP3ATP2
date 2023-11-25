@@ -1,18 +1,18 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
-#include "Funcoes.h"
-#include <locale.h>
+ #include <stdio.h>
+ #include <string.h>
+ #include <stdlib.h>
+ #include <math.h>
+ #include "Funcoes.h"
+// #include <locale.h>
 
-//função de pular linha
+//funÃ§Ã£o de pular linha
 void PularLinha(int num){
     for(int i = 0; i < num;i++){
         printf("\n");
     }
 }
 
-//Função Escrever Jogadores Vetor e no Arquivo Binario//
+//FunÃ§Ã£o Escrever Jogadores Vetor e no Arquivo Binario//
 
 void EscreverJogadoresVetor(int n){
     JOGADOR jogadores[n];
@@ -29,12 +29,13 @@ void EscreverJogadoresVetor(int n){
         scanf("%d", &jogadores[i].data.mes);
         printf("Ano nascimento: ");
         scanf("%d", &jogadores[i].data.ano);
-
+        fflush(stdin);
         //CPF//
         printf("CPF: ");
         gets(jogadores[i].cpf);
-
-        //Gênero//
+        fflush(stdin);
+        
+        //GÃªnero//
         printf("Genero: ");
         fflush(stdin);
         scanf("%u", &jogadores[i].genero);
@@ -80,7 +81,7 @@ void EscreverJogadoresVetor(int n){
         scanf("%d", &jogadores[i].hardware.ram);
 
         //Dados Campeonato//
-        printf("Vitórias: ");
+        printf("VitÃ³rias: ");
         scanf("%d", &jogadores[i].campeonato.victories);
         printf("Empates: ");
         scanf("%d", &jogadores[i].campeonato.draws);
@@ -91,9 +92,8 @@ void EscreverJogadoresVetor(int n){
         int derrotas = jogadores[i].campeonato.losses*0;
         int pontos = vitorias+empates+derrotas;
         jogadores[i].campeonato.points=pontos;
-        scanf("%d", &jogadores[i].campeonato.points);
 
-        //Títulos mundiais//
+        //TÃ­tulos mundiais//
         printf("Titulos: ");
         scanf("%d", &jogadores[i].titulos.titles);
 
@@ -117,7 +117,7 @@ void EscreverJogadoresVetor(int n){
     return;
 }
 
-//Função ler jogadores arquivo binario//
+//FunÃ§Ã£o ler jogadores arquivo binario//
 
 void LerJogadoresArquivoBinario(){
      FILE *file;
@@ -125,32 +125,32 @@ void LerJogadoresArquivoBinario(){
     
     if(file != NULL){
         fseek(file, 0, SEEK_END);
-        int tamanhoArquivo = ftell(file);
+        int tamanhoArquivo = ftell(file)/sizeof(JOGADOR);
         fseek(file, 0, SEEK_SET);
         JOGADOR jogadores[tamanhoArquivo];
         fread(jogadores, sizeof(JOGADOR), tamanhoArquivo, file);
 
         for(int i=0; i<tamanhoArquivo; i++){
         //Nome//
-        printf("Nome %d: %d", i+1, jogadores[i].nome);
+        printf("Nome %d: %s", i+1, jogadores[i].nome);
         //Nascimento//
         printf("Dia %d: %d", i+1, jogadores[i].data.dia);
         printf("Mes %d: %d", i+1, jogadores[i].data.mes);
         printf("Ano %d: %d", i+1, jogadores[i].data.ano);
 
         //CPF//
-        printf("CPF %d: %d", i+1, jogadores[i].cpf);
+        printf("CPF %d: %s", i+1, jogadores[i].cpf);
 
-        //Gênero//
+        //GÃªnero//
         if(jogadores[i].genero == 0){
-            printf("Gênero %d: Masculino", i+1);
+            printf("GÃªnero %d: Masculino", i+1);
         }
         else{
-            printf("Gênero %d: Feminino", i+1);
+            printf("GÃªnero %d: Feminino", i+1);
         }
         
         //Estado Civil//
-        printf("Estado Civil %d: %s", i+1, jogadores[i].civil);
+        printf("Estado Civil %d: %d", i+1, jogadores[i].civil);
 
         //Equipe//
         printf("Nome Equipe %d: %s", i+1, jogadores[i].time.nome_equipe);
@@ -174,7 +174,7 @@ void LerJogadoresArquivoBinario(){
             printf("Computador %d: Laptop", i+1);
         }
         printf("CPU %d: %s", i+1, jogadores[i].hardware.cpu);
-        printf("GPU %d: %S", i+1, jogadores[i].hardware.gpu);
+        printf("GPU %d: %s", i+1, jogadores[i].hardware.gpu);
         printf("RAM %d: %d", i+1, jogadores[i].hardware.ram);
 
         //Dados Campeonato//
@@ -183,7 +183,7 @@ void LerJogadoresArquivoBinario(){
         printf("Derrotas %d: %d", i+1, jogadores[i].campeonato.losses);
         printf("Pontos %d: %d", i+1, jogadores[i].campeonato.points);
 
-        //Títulos mundiais//
+        //TÃ­tulos mundiais//
         printf("Titulos %d: %d", i+1, jogadores[i].titulos.titles);
 
         //Ranking//
@@ -198,7 +198,7 @@ void LerJogadoresArquivoBinario(){
     return;
 }
 
-//Função alterar dados jogador arquivo binario//
+//FunÃ§Ã£o alterar dados jogador arquivo binario//
 
 void AlterarDadosJogadorArquivoBinario(int a, int n){
     FILE *file;
@@ -226,7 +226,7 @@ void AlterarDadosJogadorArquivoBinario(int a, int n){
             printf("CPF: ");
             gets(auxiliar[i].cpf);
 
-            //Gênero//
+            //GÃªnero//
             printf("Genero: ");
             scanf("%u", &auxiliar[i].genero);
 
@@ -271,7 +271,7 @@ void AlterarDadosJogadorArquivoBinario(int a, int n){
             scanf("%d", &auxiliar[i].hardware.ram);
 
             //Dados Campeonato//
-            printf("Vitórias: ");
+            printf("VitÃ³rias: ");
             scanf("%d", &auxiliar[i].campeonato.victories);
             printf("Empates: ");
             scanf("%d", &auxiliar[i].campeonato.draws);
@@ -284,7 +284,7 @@ void AlterarDadosJogadorArquivoBinario(int a, int n){
             auxiliar[i].campeonato.points=pontos;
             scanf("%d", &auxiliar[i].campeonato.points);
 
-            //Títulos mundiais//
+            //TÃ­tulos mundiais//
             printf("Titulos: ");
             scanf("%d", &auxiliar[i].titulos.titles);
 
@@ -304,7 +304,7 @@ void AlterarDadosJogadorArquivoBinario(int a, int n){
     return;
 }
 
-//Função atualizar pontuação jogador//
+//FunÃ§Ã£o atualizar pontuaÃ§Ã£o jogador//
 
 void InserirVitoriaEmpateDerrota(int a){
     FILE *file;
@@ -336,14 +336,14 @@ void InserirVitoriaEmpateDerrota(int a){
     return;
 }
 
-//Função buscar jogador por nome//
+//FunÃ§Ã£o buscar jogador por nome//
 
 void BuscarJogadorNome(string100 chave){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "rb");
     if(file != NULL){
         fseek(file, 0, SEEK_END);
-        int tamanhoArquivo = ftell(file);
+        int tamanhoArquivo = ftell(file)/sizeof(JOGADOR);
         fseek(file, 0, SEEK_SET);
         JOGADOR jogadores[tamanhoArquivo];
         fread(jogadores, sizeof(JOGADOR), tamanhoArquivo, file);
@@ -360,18 +360,18 @@ void BuscarJogadorNome(string100 chave){
         printf("Ano: %d", jogadores[i].data.ano);
 
         //CPF//
-        printf("CPF: %d", jogadores[i].cpf);
+        printf("CPF: %s", jogadores[i].cpf);
 
-        //Gênero//
+        //GÃªnero//
         if(jogadores[i].genero == 0){
-            printf("Gênero: Masculino");
+            printf("GÃªnero: Masculino");
         }
         else{
-            printf("Gênero: Feminino");
+            printf("GÃªnero: Feminino");
         }
         
         //Estado Civil//
-        printf("Estado Civil: %s", jogadores[i].civil);
+        printf("Estado Civil: %d", jogadores[i].civil);
 
         //Equipe//
         printf("Nome Equipe: %s", jogadores[i].time.nome_equipe);
@@ -395,7 +395,7 @@ void BuscarJogadorNome(string100 chave){
             printf("Computador: Laptop");
         }
         printf("CPU: %s", jogadores[i].hardware.cpu);
-        printf("GPU: %S", jogadores[i].hardware.gpu);
+        printf("GPU: %s", jogadores[i].hardware.gpu);
         printf("RAM: %d", jogadores[i].hardware.ram);
 
         //Dados Campeonato//
@@ -404,7 +404,7 @@ void BuscarJogadorNome(string100 chave){
         printf("Derrotas: %d", jogadores[i].campeonato.losses);
         printf("Pontos: %d", jogadores[i].campeonato.points);
 
-        //Títulos mundiais//
+        //TÃ­tulos mundiais//
         printf("Titulos: %d", jogadores[i].titulos.titles);
 
         //Ranking//
@@ -414,14 +414,14 @@ void BuscarJogadorNome(string100 chave){
     return;
 }
 
-//Função buscar jogador por rank//
+//FunÃ§Ã£o buscar jogador por rank//
 
 void BuscarJogadorRank(int chave){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "rb");
     if(file != NULL){
         fseek(file, 0, SEEK_END);
-        int tamanhoArquivo = ftell(file);
+        int tamanhoArquivo = ftell(file)/sizeof(JOGADOR);
         fseek(file, 0, SEEK_SET);
         JOGADOR jogadores[tamanhoArquivo];
         fread(jogadores, sizeof(JOGADOR), tamanhoArquivo, file);
@@ -433,8 +433,7 @@ void BuscarJogadorRank(int chave){
         i++;
 
         //Nome//
-        string100 nome = fread(jogadores[i].nome, sizeof(jogadores[i].nome), 1, file);
-        printf("Nome: %s", nome);
+        printf("Nome: %s", jogadores[i].nome);
 
          //Nascimento//
         printf("Dia: %d", jogadores[i].data.dia);
@@ -442,18 +441,18 @@ void BuscarJogadorRank(int chave){
         printf("Ano: %d", jogadores[i].data.ano);
 
         //CPF//
-        printf("CPF: %d", jogadores[i].cpf);
+        printf("CPF: %s", jogadores[i].cpf);
 
-        //Gênero//
+        //GÃªnero//
         if(jogadores[i].genero == 0){
-            printf("Gênero: Masculino");
+            printf("GÃªnero: Masculino");
         }
         else{
-            printf("Gênero: Feminino");
+            printf("GÃªnero: Feminino");
         }
         
         //Estado Civil//
-        printf("Estado Civil: %s", jogadores[i].civil);
+        printf("Estado Civil: %d", jogadores[i].civil);
 
         //Equipe//
         printf("Nome Equipe: %s", jogadores[i].time.nome_equipe);
@@ -477,7 +476,7 @@ void BuscarJogadorRank(int chave){
             printf("Computador: Laptop");
         }
         printf("CPU: %s", jogadores[i].hardware.cpu);
-        printf("GPU: %S", jogadores[i].hardware.gpu);
+        printf("GPU: %s", jogadores[i].hardware.gpu);
         printf("RAM: %d", jogadores[i].hardware.ram);
 
         //Dados Campeonato//
@@ -486,22 +485,23 @@ void BuscarJogadorRank(int chave){
         printf("Derrotas: %d", jogadores[i].campeonato.losses);
         printf("Pontos: %d", jogadores[i].campeonato.points);
 
-        //Títulos mundiais//
+        //TÃ­tulos mundiais//
         printf("Titulos: %d", jogadores[i].titulos.titles);
 
     }
     return;
 }
 
-//Função mostrar média seguidores jogadores//
+//FunÃ§Ã£o mostrar mÃ©dia seguidores jogadores//
 
 void MostrarMediaSeguidoresJogadores(int n){
     FILE *file;
     file = fopen("TrabalhoPratico.dat", "rb");
     fseek(file, 0, SEEK_END);
-    int tamanhoArquivo = ftell(file);
+    int tamanhoArquivo = ftell(file)/sizeof(JOGADOR);
     fseek(file, 0, SEEK_SET);
     JOGADOR jogadores[tamanhoArquivo];
+    fread(jogadores, sizeof(JOGADOR), tamanhoArquivo, file);
 
     int soma=0, media=0;
 
@@ -512,34 +512,28 @@ void MostrarMediaSeguidoresJogadores(int n){
     return;
 }
 
-//Cria vetor auxiliar para as funÃ§Ãµes de listar
-void CriarVetor_aux(JOGADOR jogadores, AUX auxiliar, int n){
-    int i;
-    
-    for(i = 0; i < n; i++){
-       strcpy(auxiliar[i].nome_aux, jogadores[i].nome);
-       auxiliar[i].ranking_aux = jogadores[i].ranking.rank;
-       auxiliar[i].vitorias_aux = jogadores[i].campeonato.victories;
-       auxiliar[i].pontuacao_aux = jogadores[i].campeonato.points;
-       auxiliar[i].derrotas_aux = jogadores[i].campeonato.losses;
-       auxiliar[i].empates_aux = jogadores[i].campeonato.draws;
-
-    }
+//Lê os conteúdos do arquivo para o vetor
+void LerArquivo_Vetor(JOGADOR jogadores[], int n){
+    FILE * file;
+    file = fopen("TrabalhoPratico.dat", "rb");
+    fseek(file, 0, SEEK_END);
+    int tamanhoArquivo = ftell(file)/sizeof(JOGADOR);
+    fseek(file, 0, SEEK_SET);
+    fread(jogadores, sizeof(JOGADOR), tamanhoArquivo, file);
 }
 
 
-//ordena os nomes dos jogadores por ordem alfabÃ©tica
-void OrdenarJogadores_alfabeto(  int n){
-    int i, j, conferidor;
-    string100 aux;
-    AUX auxiliares[n];
+//ordena os nomes dos jogadores por ordem alfabÃÂ©tica
+void OrdenarJogadores_alfabeto( JOGADOR auxiliares[], int n){
+    int conferidor, i, j;
+    JOGADOR aux;
     for(j = 0; j < n; j++){
         for(i = 0; i < n - 1; i++){
-            conferidor = strcmp(auxiliares[i].nome_aux, auxiliares[i+1].nome_aux);
+            conferidor = strcasecmp(auxiliares[i].nome , auxiliares[i+1].nome);
             if(conferidor > 0){
-                strcpy(aux,auxiliares[i].nome_aux);
-                strcpy(auxiliares[i].nome_aux, auxiliares[i+1].nome_aux);
-                strcpy(auxiliares[i+1].nome_aux, aux);
+                aux = auxiliares[i];
+                auxiliares[i] = auxiliares[i+1];
+                auxiliares[i+1] = aux;
             }
         }
     }
@@ -547,7 +541,7 @@ void OrdenarJogadores_alfabeto(  int n){
     printf("Lista ordenada dos nomes dos jogadores:\n\n");
 
     for(i = 0; i < n; i++){
-        printf("%s\n", auxiliares[i].nome_aux);
+        printf("%s\n", auxiliares[i].nome);
     }
 
     PularLinha(1);
@@ -555,127 +549,89 @@ void OrdenarJogadores_alfabeto(  int n){
 }
 
 
-//Ordena todos os jogadores de acordo com a posiÃ§Ã£o no campeonato
-void OrdenarJogadores_VetorAux( int n){
+
+
+//Ordena os posiÃÂ§ÃÂµes dos jogadores em ordem crescente
+void OrdenarJogadores_posicao(JOGADOR auxiliar[], int n){
+    JOGADOR aux;
     int i, j;
-    int aux;
+
+    for(j = 0; j < n; j++){
+        for(i = 0; i < n - 1; i++){
+            if(auxiliar[i].ranking.rank > auxiliar[i+1].ranking.rank){
+                aux = auxiliar[i]; 
+                auxiliar[i] = auxiliar[i+1];
+                auxiliar[i+1] = aux;
+            }
+        }
+    }
+    
+
+    printf("\nLista ordenada das posições dos jogadores:\n\n");
+
+    for(i = 0; i < n; i++){
+        printf("%s, %dª posição!\n", auxiliar[i].nome, auxiliar[i].ranking.rank);
+    }
+
+    PularLinha(1);
+
+}
+
+//Ordena os jogadores em ordem crescente por nÃÂºmero de VitÃÂ³rias
+void OrdenarJogadores_vitoria ( JOGADOR jogadores[], int n){
+    int i, j;
     string100 aux2;
 
-    AUX auxiliar[n];
+    JOGADOR aux;
 
     
     for(j = 0; j < n; j++){
         for(i = 0; i < n - 1; i++){
-            if(auxiliar[i].ranking_aux > auxiliar[i+1].ranking_aux){
-                aux = auxiliar[i].ranking_aux;
-                strcpy(aux2, auxiliar[i].nome_aux);
-                auxiliar[i].ranking_aux = auxiliar[i+1].ranking_aux;
-                strcpy(auxiliar[i].nome_aux, auxiliar[i+1].nome_aux);
-                auxiliar[i+1].ranking_aux = aux;
-                strcpy(auxiliar[i+1].nome_aux, aux2);
-
-                aux = auxiliar[i].vitorias_aux;
-                auxiliar[i].vitorias_aux = auxiliar[i+1].vitorias_aux;
-                auxiliar[i+1].vitorias_aux = aux;
-
-                aux = auxiliar[i].derrotas_aux;
-                auxiliar[i].derrotas_aux = auxiliar[i+1].derrotas_aux;
-                auxiliar[i+1].derrotas_aux = aux;
-
-                aux = auxiliar[i].pontuacao_aux;
-                auxiliar[i].pontuacao_aux = auxiliar[i+1].pontuacao_aux;
-                auxiliar[i+1].pontuacao_aux = aux;
-
-                aux = auxiliar[i].derrotas_aux;
-                auxiliar[i].derrotas_aux = auxiliar[i+1].derrotas_aux;
-                auxiliar[i+1].derrotas_aux = aux;
-
+            if(jogadores[i].campeonato.victories < jogadores[i+1].campeonato.victories){
+                aux = jogadores[i];
+                jogadores[i] = jogadores[i+1];
+                jogadores[i+1] = aux;
             }
         }
     }
 
-}
-
-//Ordena os posiÃ§Ãµes dos jogadores em ordem crescente
-void OrdenarJogadores_posicao( int n){
-    int i;
-    AUX auxiliar[n];
-    OrdenarJogadores_VetorAux( n);
-    printf("\nLista ordenada das posiÃ§Ãµes dos jogadores:\n\n");
+    printf("\nLista ordenada das posição dos jogadores:\n\n");
 
     for(i = 0; i < n; i++){
-        printf("%s, %dÂª posiÃ§Ã£o!\n", auxiliar[i].nome_aux, auxiliar[i].ranking_aux);
+        printf("%s, %d vitÃÂ³rias!\n", jogadores[i].nome, jogadores[i].campeonato.victories);
     }
 
     PularLinha(1);
 
 }
 
-//Ordena os jogadores em ordem crescente por nÃºmero de VitÃ³rias
-void OrdenarJogadores_vitoria ( int n){
-    int i, j;
-    int aux;
-    string100 aux2;
-
-    AUX auxiliar[n];
-
-    
-    for(j = 0; j < n; j++){
-        for(i = 0; i < n - 1; i++){
-            if(auxiliar[i].vitorias_aux < auxiliar[i+1].vitorias_aux){
-                aux = auxiliar[i].vitorias_aux;
-                strcpy(aux2, auxiliar[i].nome_aux);
-                auxiliar[i].vitorias_aux = auxiliar[i+1].vitorias_aux;
-                strcpy(auxiliar[i].nome_aux,auxiliar[i+1].nome_aux);
-                auxiliar[i+1].vitorias_aux = aux;
-                strcpy(auxiliar[i+1].nome_aux, aux2);
-
-            }
-        }
-    }
-
-    printf("\nLista ordenada das posiÃ§Ãµes dos jogadores:\n\n");
-
-    for(i = 0; i < n; i++){
-        printf("%s, %d vitÃ³rias!\n", auxiliar[i].nome_aux, auxiliar[i].vitorias_aux);
-    }
-
-    PularLinha(1);
-
-}
-
-//Mostrar (listar) classificaÃ§Ã£o do campeonato com nome, posiÃ§Ã£o no campeonato, pontuaÃ§Ã£o, quantidade de vitorias, derrotas e empates.
-void ListarJogadores_posicaoCampeonato (  int n){
-    AUX auxiliar[n];
-    OrdenarJogadores_VetorAux( n);
+//Mostrar (listar) classificaÃÂ§ÃÂ£o do campeonato com nome, posiÃÂ§ÃÂ£o no campeonato, pontuaÃÂ§ÃÂ£o, quantidade de vitorias, derrotas e empates.
+void ListarJogadores_posicaoCampeonato (JOGADOR auxiliar[], int n){
 
     for(int i = 0; i < n; i++){
-
-        printf("Nome: %s; %dÂª posiÃ§Ã£o; PontuaÃ§Ã£o: %d; VitÃ³rias: %d; Derrotas: %d; Empates: %d\n", auxiliar[i].nome_aux, auxiliar[i].ranking_aux, auxiliar[i].pontuacao_aux, auxiliar[i].vitorias_aux, auxiliar[i].derrotas_aux, auxiliar[i].empates_aux);
+        printf("Nome: %s; %dª posição; Pontuação: %d; Vitórias: %d; Derrotas: %d; Empates: %d\n", auxiliar[i].nome, auxiliar[i].ranking.rank, auxiliar[i].campeonato.points, auxiliar[i].campeonato.victories, auxiliar[i].campeonato.losses, auxiliar[i].campeonato.draws);
     }
 }
 
-//Lista jogadores com pontuaÃ§Ã£o menor que um determinado numero
-void ListarJogadores_PontuacaoMenor (int n, int limite){
+//Lista jogadores com pontuaÃÂ§ÃÂ£o menor que um determinado numero
+void ListarJogadores_PontuacaoMenor (JOGADOR auxiliar[],int n, int limite){
     int i;
 
-    AUX auxiliar[n];
-    printf("Jogadores com pontuaÃ§Ã£o menor que %d:\n", limite);
+    printf("Jogadores com pontuação menor que %d:\n", limite);
     for(i = 0; i < n; i++){
-        if(auxiliar[i].pontuacao_aux < limite){
-            printf("Nome: %s - %d pontos!\n", auxiliar[i].nome_aux, auxiliar[i].pontuacao_aux);
+        if(auxiliar[i].campeonato.points < limite){
+            printf("Nome: %s - %d pontos!\n", auxiliar[i].nome, auxiliar[i].campeonato.points);
         }
     }
     
 }
 
-void ListarJogadores_PontuacaoMaior (int n, int limite){
+void ListarJogadores_PontuacaoMaior (JOGADOR auxiliar[], int n, int limite){
     int i;
-    AUX auxiliar[n];
-    printf("Jogadores com pontuaÃ§Ã£o maior que %d:\n", limite);
+    printf("Jogadores com pontuação maior que %d:\n", limite);
     for(i = 0; i < n; i++){
-        if(auxiliar[i].pontuacao_aux > limite){
-            printf("Nome: %s - %d pontos!\n", auxiliar[i].nome_aux, auxiliar[i].pontuacao_aux);
+        if(auxiliar[i].campeonato.points > limite){
+            printf("Nome: %s - %d pontos!\n", auxiliar[i].nome, auxiliar[i].campeonato.points);
         }
     }
     
