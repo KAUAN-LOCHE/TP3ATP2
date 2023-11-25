@@ -5,7 +5,7 @@
 //Variavel string100//
 typedef char string100[100];
 
-//variável CPF 
+//variÃ¡vel CPF 
 typedef char CPF[11];
 
 //Genero
@@ -45,7 +45,7 @@ typedef struct campeonato{
     int points;
 }CAMPEONATO;
 
-//Struct Títulos Campeonato//
+//Struct TÃ­tulos Campeonato//
 typedef struct titulos{
     int titles;
 }TITULOS;
@@ -84,14 +84,6 @@ typedef struct jogador{
 }JOGADOR;
 
 
-typedef struct aux{
-    string100 nome_aux;
-    int ranking_aux;
-    int vitorias_aux;
-    int pontuacao_aux;
-    int derrotas_aux;
-    int empates_aux;
-}AUX;
 
 
 
@@ -102,14 +94,13 @@ void InserirVitoriaEmpateDerrota(int a);
 void BuscarJogadorNome(string100 chave);
 void BuscarJogadorRank(int chave);
 void MostrarMediaSeguidoresJogadores(int n);
-void CriarVetor_aux(JOGADOR jogadores, AUX auxiliar,int n);
-void OrdenarJogadores_alfabeto( int n);
-void OrdenarJogadores_VetorAux(int n);
-void OrdenarJogadores_posicao( int n);
-void OrdenarJogadores_vitoria ( int n);
-void ListarJogadores_posicaoCampeonato ( int n);
-void ListarJogadores_PontuacaoMenor (int n, int limite);
-void ListarJogadores_PontuacaoMaior (int n, int limite);
+void LerArquivo_Vetor(JOGADOR jogadores[], int n);
+void OrdenarJogadores_alfabeto(JOGADOR jogadores[], int n);
+void OrdenarJogadores_posicao( JOGADOR jogadores[], int n);
+void OrdenarJogadores_vitoria (JOGADOR jogadores[], int n);
+void ListarJogadores_posicaoCampeonato (JOGADOR auxiliar[], int n);
+void ListarJogadores_PontuacaoMenor (JOGADOR auxiliar[], int n, int limite);
+void ListarJogadores_PontuacaoMaior (JOGADOR auxiliar[], int n, int limite);
 
-
+#include "Funcoes.c"
 #endif
