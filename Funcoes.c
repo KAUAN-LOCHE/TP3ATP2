@@ -100,9 +100,8 @@ void EscreverJogadoresVetor(int n){
         //Ranking//
         printf("Ranking: ");
         scanf("%d", &jogadores[i].ranking.rank);
-
-        //Escrever Vetor no Arquivo Binario//
-
+    }
+    //Escrever Vetor no Arquivo Binario//
         FILE *file;
         file = fopen("TrabalhoPratico.dat", "wb");
         if(file != NULL){
@@ -112,7 +111,6 @@ void EscreverJogadoresVetor(int n){
         else{
             printf("Arquivo nao aberto!");
         }
-    }
     return;
 }
 
