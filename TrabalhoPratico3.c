@@ -60,7 +60,6 @@ int main(){
     
     int opcao;
     do{
-        printf("Escolha uma opcao: \n");
         printf("1 - Gravar jogadores;\n");
         printf("2 - Ler jogadores;\n");
         printf("3 - Alterar jogador;\n");
@@ -74,7 +73,8 @@ int main(){
         printf("11 - Buscar jogador por nome;");
         printf("12 - Buscar jogador por rank mundial;\n");
         printf("13 - Mostrar media seguidores jogadores;\n");
-        printf("14 - Sair");
+        printf("14 - Sair\n");
+        printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         string100 chaves;
@@ -87,13 +87,13 @@ int main(){
                 break;
 
             case 2:
-                LerJogadoresArquivoBinario(jogadoreslidos, n);
+                LerJogadoresArquivoBinario();
                 break;
 
             case 3:
                 printf("Digite numero jogador alterar: ");
                 scanf("%d", &a);
-                AlterarDadosJogadorArquivoBinario(a, n);
+                AlterarDadosJogadorArquivoBinario(a);
                 break;
 
             case 4:
