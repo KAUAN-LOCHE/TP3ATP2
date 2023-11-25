@@ -37,18 +37,18 @@ void EscreverJogadoresArquivoBinario(int n){
         fflush(stdin);
         
         //Gênero//
-        printf("Genero (Masculino=0/Feminino=1): ");
+        printf("Genero (Masculino=0/Feminino=1):");
         scanf("%u", &jogadores[i].genero);
-        if(jogadores[i].genero!=0 || jogadores[i].genero!=1){
+        if(jogadores[i].genero!=0 && jogadores[i].genero!=1){
             printf("Invalido! Digite novamente: Genero (Masculino=0/Feminino=1):");
             scanf("%u", &jogadores[i].genero);
         }
         else{}
 
         //Estado Civil//
-        printf("Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3): ");
+        printf("Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3):");
         scanf("%u", &jogadores[i].civil);
-        if(jogadores[i].civil!=0 || jogadores[i].civil!=1 || jogadores[i].civil!=2 || jogadores[i].civil!=3){
+        if(jogadores[i].civil!=0 && jogadores[i].civil!=1 && jogadores[i].civil!=2 && jogadores[i].civil!=3){
             printf("Invalido! Digite novamente: Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3):");
             scanf("%u", &jogadores[i].civil);
         }
@@ -81,7 +81,7 @@ void EscreverJogadoresArquivoBinario(int n){
         //Equipamento de Hardware//
         printf("Desktop(0) ou Notebook(1)? ");
         scanf("%u", &jogadores[i].hardware.computer);
-        if(jogadores[i].hardware.computer!=0 || jogadores[i].hardware.computer!=1){
+        if(jogadores[i].hardware.computer!=0 && jogadores[i].hardware.computer!=1){
             printf("Invalido! Digite novamente: Desktop(0) ou Notebook(1)?");
             scanf("%u", &jogadores[i].hardware.computer);
         }
@@ -258,7 +258,7 @@ void AlterarDadosJogadorArquivoBinario(int a){
             //Gênero//
             printf("Genero (Masculino=0/Feminino=1): ");
             scanf("%u", &auxiliar[i].genero);
-            if(auxiliar[i].genero!=0 || auxiliar[i].genero!=1){
+            if(auxiliar[i].genero!=0 && auxiliar[i].genero!=1){
                 printf("Invalido! Digite novamente: Genero (Masculino=0/Feminino=1):");
                 scanf("%u", &auxiliar[i].genero);
             }
@@ -267,7 +267,7 @@ void AlterarDadosJogadorArquivoBinario(int a){
             //Estado Civil//
             printf("Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3): ");
             scanf("%u", &auxiliar[i].civil);
-            if(auxiliar[i].civil!=0 || auxiliar[i].civil!=1 || auxiliar[i].civil!=2 || auxiliar[i].civil!=3){
+            if(auxiliar[i].civil!=0 && auxiliar[i].civil!=1 && auxiliar[i].civil!=2 && auxiliar[i].civil!=3){
                 printf("Invalido! Digite novamente: Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3):");
                 scanf("%u", &auxiliar[i].civil);
             }
@@ -300,7 +300,7 @@ void AlterarDadosJogadorArquivoBinario(int a){
             //Equipamento de Hardware//
             printf("Desktop(0) ou Notebook(1)? ");
             scanf("%u", &auxiliar[i].hardware.computer);
-            if(auxiliar[i].hardware.computer!=0 || auxiliar[i].hardware.computer!=1){
+            if(auxiliar[i].hardware.computer!=0 && auxiliar[i].hardware.computer!=1){
                 printf("Invalido! Digite novamente: Desktop(0) ou Notebook(1)?");
                 scanf("%u", &auxiliar[i].hardware.computer);
             }
@@ -555,7 +555,7 @@ void MostrarMediaSeguidoresJogadores(int n){
 }
 
 //L� os conte�dos do arquivo para o vetor
-void LerArquivo_Vetor(JOGADOR jogadores[], int n){
+void LerArquivo_Vetor(JOGADOR jogadores[]){
     FILE * file;
     file = fopen("TrabalhoPratico.dat", "rb");
     fseek(file, 0, SEEK_END);

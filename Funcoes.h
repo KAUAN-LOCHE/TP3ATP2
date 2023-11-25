@@ -94,7 +94,7 @@ void InserirVitoriaEmpateDerrota(int a);
 void BuscarJogadorNome(string100 chave);
 void BuscarJogadorRank(int chave);
 void MostrarMediaSeguidoresJogadores(int n);
-void LerArquivo_Vetor(JOGADOR jogadores[], int n);
+void LerArquivo_Vetor(JOGADOR jogadores[]);
 void OrdenarJogadores_alfabeto(JOGADOR jogadores[], int n);
 void OrdenarJogadores_posicao( JOGADOR jogadores[], int n);
 void OrdenarJogadores_vitoria (JOGADOR jogadores[], int n);
