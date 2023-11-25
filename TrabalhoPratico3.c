@@ -83,7 +83,7 @@ int main(){
 
         switch (opcao){
             case 1:
-                EscreverJogadoresVetor(n);
+                EscreverJogadoresArquivoBinario(n);
                 break;
 
             case 2:
@@ -134,6 +134,7 @@ int main(){
             
             case 11:
                 printf("Digite nome: ");
+                fflush(stdin);
                 gets(chaves);
                 BuscarJogadorNome(chaves);
                 break;

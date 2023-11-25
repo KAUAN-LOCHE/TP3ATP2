@@ -87,7 +87,7 @@ typedef struct jogador{
 
 
 
-void EscreverJogadoresVetor(int n);
+void EscreverJogadoresArquivoBinario(int n);
 void LerJogadoresArquivoBinario();
 void AlterarDadosJogadorArquivoBinario(int a);
 void InserirVitoriaEmpateDerrota(int a);

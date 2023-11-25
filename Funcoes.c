@@ -14,7 +14,7 @@ void PularLinha(int num){
 
 //Função Escrever Jogadores Vetor e no Arquivo Binario//
 
-void EscreverJogadoresVetor(int n){
+void EscreverJogadoresArquivoBinario(int n){
     JOGADOR jogadores[n];
     for(int i=0; i<n; i++){
         //Nome Jogador//
@@ -30,6 +30,7 @@ void EscreverJogadoresVetor(int n){
         printf("Ano nascimento: ");
         scanf("%d", &jogadores[i].data.ano);
         fflush(stdin);
+
         //CPF//
         printf("CPF: ");
         gets(jogadores[i].cpf);
@@ -37,12 +38,21 @@ void EscreverJogadoresVetor(int n){
         
         //Gênero//
         printf("Genero (Masculino=0/Feminino=1): ");
-        fflush(stdin);
         scanf("%u", &jogadores[i].genero);
+        if(jogadores[i].genero!=0 || jogadores[i].genero!=1){
+            printf("Invalido! Digite novamente: Genero (Masculino=0/Feminino=1):");
+            scanf("%u", &jogadores[i].genero);
+        }
+        else{}
 
         //Estado Civil//
         printf("Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3): ");
         scanf("%u", &jogadores[i].civil);
+        if(jogadores[i].civil!=0 || jogadores[i].civil!=1 || jogadores[i].civil!=2 || jogadores[i].civil!=3){
+            printf("Invalido! Digite novamente: Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3):");
+            scanf("%u", &jogadores[i].civil);
+        }
+        else{}
 
         //Equipe//
         printf("Nome Equipe: ");
@@ -71,6 +81,11 @@ void EscreverJogadoresVetor(int n){
         //Equipamento de Hardware//
         printf("Desktop(0) ou Notebook(1)? ");
         scanf("%u", &jogadores[i].hardware.computer);
+        if(jogadores[i].hardware.computer!=0 || jogadores[i].hardware.computer!=1){
+            printf("Invalido! Digite novamente: Desktop(0) ou Notebook(1)?");
+            scanf("%u", &jogadores[i].hardware.computer);
+        }
+        else{}
         printf("CPU: ");
         fflush(stdin);
         gets(jogadores[i].hardware.cpu);
@@ -150,7 +165,19 @@ void LerJogadoresArquivoBinario(){
         }
         
         //Estado Civil//
-        printf("Estado Civil %d: %d \n", i+1, jogadores[i].civil);
+        if(jogadores[i].civil == 0){
+            printf("Estado Civil %d: Casado \n", i+1);
+        }
+        if(jogadores[i].civil == 1){
+            printf("Estado Civil %d: Solteiro \n", i+1);
+        }
+        if(jogadores[i].civil == 2){
+            printf("Estado Civil %d: Divorciado \n", i+1);
+        }
+        if(jogadores[i].civil == 3){
+            printf("Estado Civil %d: Viuvo \n", i+1);
+        }
+        
 
         //Equipe//
         printf("Nome Equipe %d: %s \n", i+1, jogadores[i].time.nome_equipe);
@@ -209,89 +236,104 @@ void AlterarDadosJogadorArquivoBinario(int a){
         JOGADOR auxiliar[1];
 
         for(int i=0; i<1; i++){
-        //Nome Jogador//
-        printf("Nome jogador: ");
-        fflush(stdin);
-        gets(auxiliar[i].nome);
+            //Nome Jogador//
+            printf("Nome jogador: ");
+            fflush(stdin);
+            gets(auxiliar[i].nome);
 
-        //Nascimento//
-        printf("Dia nascimento: ");
-        scanf("%d", &auxiliar[i].data.dia);
-        printf("Mes nascimento: ");
-        scanf("%d", &auxiliar[i].data.mes);
-        printf("Ano nascimento: ");
-        scanf("%d", &auxiliar[i].data.ano);
-        fflush(stdin);
-        //CPF//
-        printf("CPF: ");
-        gets(auxiliar[i].cpf);
-        fflush(stdin);
-        
-        //Gênero//
-        printf("Genero (Masculino=0/Feminino=1): ");
-        fflush(stdin);
-        scanf("%u", &auxiliar[i].genero);
+            //Nascimento//
+            printf("Dia nascimento: ");
+            scanf("%d", &auxiliar[i].data.dia);
+            printf("Mes nascimento: ");
+            scanf("%d", &auxiliar[i].data.mes);
+            printf("Ano nascimento: ");
+            scanf("%d", &auxiliar[i].data.ano);
+            fflush(stdin);
 
-        //Estado Civil//
-        printf("Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3): ");
-        scanf("%u", &auxiliar[i].civil);
+            //CPF//
+            printf("CPF: ");
+            gets(auxiliar[i].cpf);
+            fflush(stdin);
+            
+            //Gênero//
+            printf("Genero (Masculino=0/Feminino=1): ");
+            scanf("%u", &auxiliar[i].genero);
+            if(auxiliar[i].genero!=0 || auxiliar[i].genero!=1){
+                printf("Invalido! Digite novamente: Genero (Masculino=0/Feminino=1):");
+                scanf("%u", &auxiliar[i].genero);
+            }
+            else{}
 
-        //Equipe//
-        printf("Nome Equipe: ");
-        fflush(stdin);
-        gets(auxiliar[i].time.nome_equipe);
-        printf("Nickname equipe rede social: ");
-        fflush(stdin);
-        gets(auxiliar[i].time.nickname_equipe);
-        printf("Seguidores rede social equipe: ");
-        scanf("%d", &auxiliar[i].time.seguidores_equipe);
+            //Estado Civil//
+            printf("Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3): ");
+            scanf("%u", &auxiliar[i].civil);
+            if(auxiliar[i].civil!=0 || auxiliar[i].civil!=1 || auxiliar[i].civil!=2 || auxiliar[i].civil!=3){
+                printf("Invalido! Digite novamente: Estado civil (Casado=0/Solteiro=1/Divorciado=2/Viuvo=3):");
+                scanf("%u", &auxiliar[i].civil);
+            }
+            else{}
 
-        //Patrocinadora Principal//
-        printf("Patrocinadora principal: ");
-        fflush(stdin);
-        gets(auxiliar[i].patrocinadora);
+            //Equipe//
+            printf("Nome Equipe: ");
+            fflush(stdin);
+            gets(auxiliar[i].time.nome_equipe);
+            printf("Nickname equipe rede social: ");
+            fflush(stdin);
+            gets(auxiliar[i].time.nickname_equipe);
+            printf("Seguidores rede social equipe: ");
+            scanf("%d", &auxiliar[i].time.seguidores_equipe);
 
-        //Rede Social//
-        printf("Rede social: ");
-        fflush(stdin);
-        gets(auxiliar[i].redesocial_jogador.nickname_jogador);
+            //Patrocinadora Principal//
+            printf("Patrocinadora principal: ");
+            fflush(stdin);
+            gets(auxiliar[i].patrocinadora);
 
-        //Seguidores Rede Social//
-        printf("Seguidores rede social: ");
-        scanf("%d", &auxiliar[i].redesocial_jogador.seguidores_jogador);
+            //Rede Social//
+            printf("Rede social: ");
+            fflush(stdin);
+            gets(auxiliar[i].redesocial_jogador.nickname_jogador);
 
-        //Equipamento de Hardware//
-        printf("Desktop(0) ou Notebook(1)?");
-        scanf("%u", &auxiliar[i].hardware.computer);
-        printf("CPU: ");
-        fflush(stdin);
-        gets(auxiliar[i].hardware.cpu);
-        printf("GPU: ");
-        fflush(stdin);
-        gets(auxiliar[i].hardware.gpu);
-        printf("Quantidade RAM: ");
-        scanf("%d", &auxiliar[i].hardware.ram);
+            //Seguidores Rede Social//
+            printf("Seguidores rede social: ");
+            scanf("%d", &auxiliar[i].redesocial_jogador.seguidores_jogador);
 
-        //Dados Campeonato//
-        printf("Vitórias: ");
-        scanf("%d", &auxiliar[i].campeonato.victories);
-        printf("Empates: ");
-        scanf("%d", &auxiliar[i].campeonato.draws);
-        printf("Derrotas: ");
-        scanf("%d", &auxiliar[i].campeonato.losses);
-        int vitorias = auxiliar[i].campeonato.victories*3;
-        int empates = auxiliar[i].campeonato.draws*1;
-        int derrotas = auxiliar[i].campeonato.losses*0;
-        int pontos = vitorias+empates+derrotas;
-        auxiliar[i].campeonato.points=pontos;
+            //Equipamento de Hardware//
+            printf("Desktop(0) ou Notebook(1)? ");
+            scanf("%u", &auxiliar[i].hardware.computer);
+            if(auxiliar[i].hardware.computer!=0 || auxiliar[i].hardware.computer!=1){
+                printf("Invalido! Digite novamente: Desktop(0) ou Notebook(1)?");
+                scanf("%u", &auxiliar[i].hardware.computer);
+            }
+            else{}
+            printf("CPU: ");
+            fflush(stdin);
+            gets(auxiliar[i].hardware.cpu);
+            printf("GPU: ");
+            fflush(stdin);
+            gets(auxiliar[i].hardware.gpu);
+            printf("Quantidade RAM: ");
+            scanf("%d", &auxiliar[i].hardware.ram);
 
-        //Títulos mundiais//
-        printf("Titulos: ");
-        scanf("%d", &auxiliar[i].titulos.titles);
+            //Dados Campeonato//
+            printf("Vitórias: ");
+            scanf("%d", &auxiliar[i].campeonato.victories);
+            printf("Empates: ");
+            scanf("%d", &auxiliar[i].campeonato.draws);
+            printf("Derrotas: ");
+            scanf("%d", &auxiliar[i].campeonato.losses);
+            int vitorias = auxiliar[i].campeonato.victories*3;
+            int empates = auxiliar[i].campeonato.draws*1;
+            int derrotas = auxiliar[i].campeonato.losses*0;
+            int pontos = vitorias+empates+derrotas;
+            auxiliar[i].campeonato.points=pontos;
 
-        //Ranking//
-        printf("Ranking: ");
-        scanf("%d", &auxiliar[i].ranking.rank);
+            //Títulos mundiais//
+            printf("Titulos: ");
+            scanf("%d", &auxiliar[i].titulos.titles);
+
+            //Ranking//
+            printf("Ranking: ");
+            scanf("%d", &auxiliar[i].ranking.rank);
         }
 
         fseek(file, a-1*sizeof(JOGADOR), SEEK_SET);
@@ -353,63 +395,62 @@ void BuscarJogadorNome(string100 chave){
         while(strcmp(jogadores[i].nome, chave)!=0){
             i++;
         }
-        i++;
 
         //Nascimento//
-        printf("Dia: %d", jogadores[i].data.dia);
-        printf("Mes: %d", jogadores[i].data.mes);
-        printf("Ano: %d", jogadores[i].data.ano);
+        printf("Dia: %d\n", jogadores[i].data.dia);
+        printf("Mes: %d\n", jogadores[i].data.mes);
+        printf("Ano: %d\n", jogadores[i].data.ano);
 
         //CPF//
-        printf("CPF: %s", jogadores[i].cpf);
+        printf("CPF: %s\n", jogadores[i].cpf);
 
         //Gênero//
         if(jogadores[i].genero == 0){
-            printf("Gênero: Masculino");
+            printf("Gênero: Masculino\n");
         }
         else{
-            printf("Gênero: Feminino");
+            printf("Gênero: Feminino\n");
         }
         
         //Estado Civil//
-        printf("Estado Civil: %d", jogadores[i].civil);
+        printf("Estado Civil: %d\n", jogadores[i].civil);
 
         //Equipe//
-        printf("Nome Equipe: %s", jogadores[i].time.nome_equipe);
-        printf("Nickname Equipe Rede Social: %s", jogadores[i].time.nickname_equipe);               
-        printf("Seguidores Equipe Rede Social: %d", jogadores[i].time.seguidores_equipe);
+        printf("Nome Equipe: %s\n", jogadores[i].time.nome_equipe);
+        printf("Nickname Equipe Rede Social: %s\n", jogadores[i].time.nickname_equipe);               
+        printf("Seguidores Equipe Rede Social: %d\n", jogadores[i].time.seguidores_equipe);
 
         //Patrociadora Principal//
-        printf("Patrocinadora Principal: %s", jogadores[i].patrocinadora);
+        printf("Patrocinadora Principal: %s\n", jogadores[i].patrocinadora);
 
         //Rede Social//
-        printf("Rede Social: %s", jogadores[i].redesocial_jogador.nickname_jogador);
+        printf("Rede Social: %s\n", jogadores[i].redesocial_jogador.nickname_jogador);
 
         //Seguidors Rede Social//
-        printf("Seguidores: %d", jogadores[i].redesocial_jogador.seguidores_jogador);
+        printf("Seguidores: %d\n", jogadores[i].redesocial_jogador.seguidores_jogador);
 
         //Equipmento de Hardware//
         if(jogadores[i].hardware.computer==0){
-            printf("Computador: Desktop");
+            printf("Computador: Desktop\n");
         }
         else{
-            printf("Computador: Laptop");
+            printf("Computador: Laptop\n");
         }
-        printf("CPU: %s", jogadores[i].hardware.cpu);
-        printf("GPU: %s", jogadores[i].hardware.gpu);
-        printf("RAM: %d", jogadores[i].hardware.ram);
+        printf("CPU: %s\n", jogadores[i].hardware.cpu);
+        printf("GPU: %s\n", jogadores[i].hardware.gpu);
+        printf("RAM: %d\n", jogadores[i].hardware.ram);
 
         //Dados Campeonato//
-        printf("Vitorias: %d", jogadores[i].campeonato.victories);
-        printf("Empates: %d", jogadores[i].campeonato.draws);
-        printf("Derrotas: %d", jogadores[i].campeonato.losses);
-        printf("Pontos: %d", jogadores[i].campeonato.points);
+        printf("Vitorias: %d\n", jogadores[i].campeonato.victories);
+        printf("Empates: %d\n", jogadores[i].campeonato.draws);
+        printf("Derrotas: %d\n", jogadores[i].campeonato.losses);
+        printf("Pontos: %d\n", jogadores[i].campeonato.points);
 
         //Títulos mundiais//
-        printf("Titulos: %d", jogadores[i].titulos.titles);
+        printf("Titulos: %d\n", jogadores[i].titulos.titles);
 
         //Ranking//
-        printf("Rank: %d", jogadores[i].ranking.rank);
+        printf("Rank: %d\n", jogadores[i].ranking.rank);
         
     }
     return;
@@ -431,63 +472,62 @@ void BuscarJogadorRank(int chave){
         while(jogadores[i].ranking.rank != chave){
             i++;
         }
-        i++;
 
         //Nome//
-        printf("Nome: %s", jogadores[i].nome);
+        printf("Nome: %s\n", jogadores[i].nome);
 
          //Nascimento//
-        printf("Dia: %d", jogadores[i].data.dia);
-        printf("Mes: %d", jogadores[i].data.mes);
-        printf("Ano: %d", jogadores[i].data.ano);
+        printf("Dia: %d\n", jogadores[i].data.dia);
+        printf("Mes: %d\n", jogadores[i].data.mes);
+        printf("Ano: %d\n", jogadores[i].data.ano);
 
         //CPF//
-        printf("CPF: %s", jogadores[i].cpf);
+        printf("CPF: %s\n", jogadores[i].cpf);
 
         //Gênero//
         if(jogadores[i].genero == 0){
-            printf("Gênero: Masculino");
+            printf("Gênero: Masculino\n");
         }
         else{
-            printf("Gênero: Feminino");
+            printf("Gênero: Feminino\n");
         }
         
         //Estado Civil//
-        printf("Estado Civil: %d", jogadores[i].civil);
+        printf("Estado Civil: %d\n", jogadores[i].civil);
 
         //Equipe//
-        printf("Nome Equipe: %s", jogadores[i].time.nome_equipe);
-        printf("Nickname Equipe Rede Social: %s", jogadores[i].time.nickname_equipe);               
-        printf("Seguidores Equipe Rede Social: %d", jogadores[i].time.seguidores_equipe);
+        printf("Nome Equipe: %s\n", jogadores[i].time.nome_equipe);
+        printf("Nickname Equipe Rede Social: %s\n", jogadores[i].time.nickname_equipe);               
+        printf("Seguidores Equipe Rede Social: %d\n", jogadores[i].time.seguidores_equipe);
 
         //Patrociadora Principal//
-        printf("Patrocinadora Principal: %s", jogadores[i].patrocinadora);
+        printf("Patrocinadora Principal: %s\n", jogadores[i].patrocinadora);
 
         //Rede Social//
-        printf("Rede Social: %s", jogadores[i].redesocial_jogador.nickname_jogador);
+        printf("Rede Social: %s\n", jogadores[i].redesocial_jogador.nickname_jogador);
 
         //Seguidors Rede Social//
-        printf("Seguidores: %d", jogadores[i].redesocial_jogador.seguidores_jogador);
+        printf("Seguidores: %d\n", jogadores[i].redesocial_jogador.seguidores_jogador);
 
         //Equipmento de Hardware//
         if(jogadores[i].hardware.computer==0){
-            printf("Computador: Desktop");
+            printf("Computador: Desktop\n");
         }
         else{
-            printf("Computador: Laptop");
+            printf("Computador: Laptop\n");
         }
-        printf("CPU: %s", jogadores[i].hardware.cpu);
-        printf("GPU: %s", jogadores[i].hardware.gpu);
-        printf("RAM: %d", jogadores[i].hardware.ram);
+        printf("CPU: %s\n", jogadores[i].hardware.cpu);
+        printf("GPU: %s\n", jogadores[i].hardware.gpu);
+        printf("RAM: %d\n", jogadores[i].hardware.ram);
 
         //Dados Campeonato//
-        printf("Vitorias: %d", jogadores[i].campeonato.victories);
-        printf("Empates: %d", jogadores[i].campeonato.draws);
-        printf("Derrotas: %d", jogadores[i].campeonato.losses);
-        printf("Pontos: %d", jogadores[i].campeonato.points);
+        printf("Vitorias: %d\n", jogadores[i].campeonato.victories);
+        printf("Empates: %d\n", jogadores[i].campeonato.draws);
+        printf("Derrotas: %d\n", jogadores[i].campeonato.losses);
+        printf("Pontos: %d\n", jogadores[i].campeonato.points);
 
         //Títulos mundiais//
-        printf("Titulos: %d", jogadores[i].titulos.titles);
+        printf("Titulos: %d\n", jogadores[i].titulos.titles);
 
     }
     return;
@@ -504,12 +544,13 @@ void MostrarMediaSeguidoresJogadores(int n){
     JOGADOR jogadores[tamanhoArquivo];
     fread(jogadores, sizeof(JOGADOR), tamanhoArquivo, file);
 
-    int soma=0, media=0;
+    int soma=0;
 
     for(int i=0; i<n; i++){
         soma = soma+jogadores[i].redesocial_jogador.seguidores_jogador;
     }
-    media = soma/tamanhoArquivo;
+    float media = soma/tamanhoArquivo;
+    printf("Media: %f\n", media);
     return;
 }
 
