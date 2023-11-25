@@ -105,11 +105,14 @@ void EscreverJogadoresVetor(int n){
         FILE *file;
         file = fopen("TrabalhoPratico.dat", "wb");
         if(file != NULL){
-            fwrite(jogadores, sizeof(JOGADOR), n, file);
+            for(int i=0; i<n; i++){
+                fwrite(&jogadores[i], sizeof(JOGADOR), 1, file);
+            }
+            fclose(file);
         }
         
         else{
-            printf("Arquivo nao aberto!");
+            printf("Arquivo populado!");
         }
     return;
 }
@@ -129,62 +132,62 @@ void LerJogadoresArquivoBinario(){
 
         for(int i=0; i<tamanhoArquivo; i++){
         //Nome//
-        printf("Nome %d: %s", i+1, jogadores[i].nome);
+        printf("Nome %d: %s\n", i+1, jogadores[i].nome);
         //Nascimento//
-        printf("Dia %d: %d", i+1, jogadores[i].data.dia);
-        printf("Mes %d: %d", i+1, jogadores[i].data.mes);
-        printf("Ano %d: %d", i+1, jogadores[i].data.ano);
+        printf("Dia %d: %d \n", i+1, jogadores[i].data.dia);
+        printf("Mes %d: %d \n", i+1, jogadores[i].data.mes);
+        printf("Ano %d: %d \n", i+1, jogadores[i].data.ano);
 
         //CPF//
-        printf("CPF %d: %s", i+1, jogadores[i].cpf);
+        printf("CPF %d: %s \n", i+1, jogadores[i].cpf);
 
         //Gênero//
         if(jogadores[i].genero == 0){
-            printf("Gênero %d: Masculino", i+1);
+            printf("Gênero %d: Masculino \n", i+1);
         }
         else{
-            printf("Gênero %d: Feminino", i+1);
+            printf("Gênero %d: Feminino \n", i+1);
         }
         
         //Estado Civil//
-        printf("Estado Civil %d: %d", i+1, jogadores[i].civil);
+        printf("Estado Civil %d: %d \n", i+1, jogadores[i].civil);
 
         //Equipe//
-        printf("Nome Equipe %d: %s", i+1, jogadores[i].time.nome_equipe);
-        printf("Nickname Equipe Rede Social %d: %s", i+1, jogadores[i].time.nickname_equipe);               
-        printf("Seguidores Equipe Rede Social %d: %d", i+1, jogadores[i].time.seguidores_equipe);
+        printf("Nome Equipe %d: %s \n", i+1, jogadores[i].time.nome_equipe);
+        printf("Nickname Equipe Rede Social %d: %s \n", i+1, jogadores[i].time.nickname_equipe);               
+        printf("Seguidores Equipe Rede Social %d: %d \n", i+1, jogadores[i].time.seguidores_equipe);
 
         //Patrociadora Principal//
-        printf("Patrocinadora Principal %d: %s", i+1, jogadores[i].patrocinadora);
+        printf("Patrocinadora Principal %d: %s \n", i+1, jogadores[i].patrocinadora);
 
         //Rede Social//
-        printf("Rede Social %d: %s", i+1, jogadores[i].redesocial_jogador.nickname_jogador);
+        printf("Rede Social %d: %s \n", i+1, jogadores[i].redesocial_jogador.nickname_jogador);
 
         //Seguidors Rede Social//
-        printf("Seguidores %d: %d", i+1, jogadores[i].redesocial_jogador.seguidores_jogador);
+        printf("Seguidores %d: %d \n", i+1, jogadores[i].redesocial_jogador.seguidores_jogador);
 
         //Equipmento de Hardware//
         if(jogadores[i].hardware.computer==0){
-            printf("Computador %d: Desktop", i+1);
+            printf("Computador %d: Desktop \n", i+1);
         }
         else{
-            printf("Computador %d: Laptop", i+1);
+            printf("Computador %d: Laptop \n", i+1);
         }
-        printf("CPU %d: %s", i+1, jogadores[i].hardware.cpu);
-        printf("GPU %d: %s", i+1, jogadores[i].hardware.gpu);
-        printf("RAM %d: %d", i+1, jogadores[i].hardware.ram);
+        printf("CPU %d: %s \n", i+1, jogadores[i].hardware.cpu);
+        printf("GPU %d: %s \n", i+1, jogadores[i].hardware.gpu);
+        printf("RAM %d: %d \n", i+1, jogadores[i].hardware.ram);
 
         //Dados Campeonato//
-        printf("Vitorias %d: %d", i+1, jogadores[i].campeonato.victories);
-        printf("Empates %d: %d", i+1, jogadores[i].campeonato.draws);
-        printf("Derrotas %d: %d", i+1, jogadores[i].campeonato.losses);
-        printf("Pontos %d: %d", i+1, jogadores[i].campeonato.points);
+        printf("Vitorias %d: %d \n", i+1, jogadores[i].campeonato.victories);
+        printf("Empates %d: %d \n", i+1, jogadores[i].campeonato.draws);
+        printf("Derrotas %d: %d \n", i+1, jogadores[i].campeonato.losses);
+        printf("Pontos %d: %d \n", i+1, jogadores[i].campeonato.points);
 
         //Títulos mundiais//
-        printf("Titulos %d: %d", i+1, jogadores[i].titulos.titles);
+        printf("Titulos %d: %d \n", i+1, jogadores[i].titulos.titles);
 
         //Ranking//
-        printf("Rank %d: %d", i+1, jogadores[i].ranking.rank);
+        printf("Rank %d: %d \n", i+1, jogadores[i].ranking.rank);
         }
 
     }
@@ -291,8 +294,8 @@ void AlterarDadosJogadorArquivoBinario(int a){
         scanf("%d", &auxiliar[i].ranking.rank);
         }
 
-        fseek(file, a*sizeof(JOGADOR), SEEK_SET);
-        fwrite(auxiliar, a*sizeof(JOGADOR), 1, file);
+        fseek(file, a-1*sizeof(JOGADOR), SEEK_SET);
+        fwrite(auxiliar, sizeof(JOGADOR), 1, file);
         fclose(file);
     }
     
@@ -323,8 +326,8 @@ void InserirVitoriaEmpateDerrota(int a){
             scanf("%d", &auxiliar[i].campeonato.losses);
         }
 
-        fseek(file, a*sizeof(JOGADOR), SEEK_SET);
-        fwrite(auxiliar, a*sizeof(JOGADOR), 1, file);
+        fseek(file, a-1*sizeof(JOGADOR), SEEK_SET);
+        fwrite(auxiliar, sizeof(JOGADOR), 1, file);
         fclose(file);
         
     }

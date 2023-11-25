@@ -70,7 +70,7 @@ int main(){
         printf("8 - Listar classificacao campeonato;\n");
         printf("9 - Listar jogadores com pontuacao maior que;\n");
         printf("10 - Listar jogadores com pontuacao menor que;\n");
-        printf("11 - Buscar jogador por nome;");
+        printf("11 - Buscar jogador por nome;\n");
         printf("12 - Buscar jogador por rank mundial;\n");
         printf("13 - Mostrar media seguidores jogadores;\n");
         printf("14 - Sair\n");
