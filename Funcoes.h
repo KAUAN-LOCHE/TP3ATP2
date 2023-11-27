@@ -5,7 +5,7 @@
 //Variavel string100//
 typedef char string100[100];
 
-//variável CPF 
+//variÃ¡vel CPF 
 typedef char CPF[11];
 
 //Genero
@@ -45,7 +45,7 @@ typedef struct campeonato{
     int points;
 }CAMPEONATO;
 
-//Struct Títulos Campeonato//
+//Struct TÃ­tulos Campeonato//
 typedef struct titulos{
     int titles;
 }TITULOS;
