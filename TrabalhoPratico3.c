@@ -1,41 +1,44 @@
-//âNome do Jogador
-//âData de Nascimento
-//âCPF
-//âGÃªnero
-//â Estado civil
-//â Equipe
-//â¢ Nome
-//â¢ Nickname da rede social
-//â¢ NÃºmero de seguidores na rede social
-//â Patrocinadora principal
-//â Nickname da rede social
-//â NÃºmero de seguidores em redes sociais
+/*
+? Nome do Jogador
+? Data de Nascimento
+? CPF
+? G�nero
+? Estado civil
+? Equipe
+? Nome
+? Nickname da rede social
+? N�mero de seguidores na rede social
+? Patrocinadora principal
+? Nickname da rede social
+? N�mero de seguidores em redes sociais
+? Equipamento de Hardware
+? Modelo do computador/notebook
+? Processador
+? Placa de v�deo
+? Quantidade de Mem�ria RAM
+? Dados do campeonato
+? Pontua��o no campeonato
+? Quantidade de vit�rias (3 pontos por vit�ria)
+? Quantidade de derrotas (0 pontos por derrota)
+? Quantidade de empates (1 ponto por empate)
+? Quantidade de t�tulos que o jogador ganhou
+? Posi��o do rank mundial
 
-// â Equipamento de Hardware
-// â¢ Modelo do computador/notebook
-// â¢ Processador
-// â¢ Placa de vÃ­deo
-// â¢ Quantidade de MemÃ³ria RAM
-// â Dados do campeonato
-// â¢ PontuaÃ§Ã£o no campeonato
-// â¢ Quantidade de vitÃ³rias (3 pontos por vitÃ³ria)
-// â¢ Quantidade de derrotas (0 pontos por derrota)
-// â¢ Quantidade de empates (1 ponto por empate)
-// â Quantidade de tÃ­tulos que o jogador ganhou
-// â PosiÃ§Ã£o do rank mundial
-
-//âFunÃ§Ãµes para a escrita e leitura de diferentes jogadores e de todos os dados que o norteiam. Assim possibilitando cadastro de jogadores.
-//â Possibilitar a alteraÃ§Ã£o, ou seja, correÃ§Ã£o dos dados de um jogador.
-//â Inserir vitÃ³ria, derrota ou empate para um jogador e com isso atualizar sua pontuaÃ§Ã£o no campeonato.
-//â Listar todos os jogadores ordem alfabÃ©tica
-//â Listar todos os jogadores por ordem de sua posiÃ§Ã£o no rank mundial
-//â Listar jogadores que possuem maior nÃºmero de vitÃ³rias no campeonato
-//â Mostrar (listar) classificaÃ§Ã£o do campeonato com nome, posiÃ§Ã£o no campeonato, pontuaÃ§Ã£o, quantidade de vitorias, derrotas e empates.
-//â Listar jogadores com pontuaÃ§Ã£o no campeonato maior que um certo valor
-// â Listar jogadores com pontuaÃ§Ã£o no campeonato menor que um certo valor
-// â Buscar um jogador por nome
-// â Buscar um jogador por posiÃ§Ã£o no rank mundial
-// â Mostrar a quantidade mÃ©dia de seguidores de um jogador do campeonato, ou seja, um jogador do campeonato possui em mÃ©dia quantos seguidores.
+? Fun��es para a escrita e leitura de diferentes jogadores e de todos os
+dados que o norteiam. Assim possibilitando cadastro de jogadores.
+? Possibilitar a altera��o, ou seja, corre��o dos dados de um jogador.
+? Inserir vit�ria, derrota ou empate para um jogador e com isso atualizar sua pontua��o no campeonato.
+? Listar todos os jogadores ordem alfab�tica por nome
+? Listar todos os jogadores por ordem de sua posi��o no rank mundial
+? Listar jogadores que possuem maior n�mero de vit�rias no campeonato
+? Mostrar (listar) classifica��o do campeonato com nome, posi��o no
+campeonato, pontua��o, quantidade de vitorias, derrotas e empates.
+? Listar jogadores com pontua��o no campeonato maior que um certo valor
+? Listar jogadores com pontua��o no campeonato menor que um certo valor
+? Buscar um jogador por nome
+? Buscar um jogador por posi��o no rank mundial
+? Mostrar a quantidade m�dia de seguidores de um jogador do campeonato, ou seja, um jogador do campeonato possui em m�dia quantos seguidores.
+*/ 
 
 #include <stdio.h>
 #include <string.h>
@@ -46,7 +49,7 @@
 
 int main(){
     setlocale(LC_ALL, "Portuguese");
-    //Menu e utilizacao funÃ§Ãµes//
+    //Menu e utiliza��o fun��es//
     int n;
     printf("Este e um programa para manipular structs de jogadores gravados em arquivos binarios\n");
     printf("Digite quantidade de jogadores: ");
@@ -54,7 +57,7 @@ int main(){
 
     JOGADOR jogadores[n], jogadoreslidos[n];
 
-    LerArquivo_Vetor(jogadores, n);
+    LerArquivo_Vetor(jogadores);
 
 
     
