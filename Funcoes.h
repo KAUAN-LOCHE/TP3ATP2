@@ -87,17 +87,34 @@ typedef struct jogador{
 
 
 
-void EscreverJogadoresArquivoBinario(int n);
+void EscreverJogadoresArquivoBinario();
+
 void LerJogadoresArquivoBinario();
-void AlterarDadosJogadorArquivoBinario(int a);
+
+void AlterarNomeJogadorArquivoBinario(int a);
+void AlterarDataJogadorArquivoBinario(int a);
+void AlterarCPFJogadorArquivoBinario(int a);
+void AlterarGeneroJogadorArquivoBinario(int a);
+void AlterarCivilJogadorArquivoBinario(int a);
+void AlterarEquipeJogadorArquivoBinario(int a);
+void AlterarPatrocinadoraJogadorArquivoBinario(int a);
+void AlterarRedeSocialJogadorArquivoBinario(int a);
+void AlterarHardwareJogadorArquivoBinario(int a);
+void AlterarCampeonatoJogadorArquivoBinario(int a);
+
 void InserirVitoriaEmpateDerrota(int a);
+
 void BuscarJogadorNome(string100 chave);
 void BuscarJogadorRank(int chave);
+
 void MostrarMediaSeguidoresJogadores(int n);
+
 void LerArquivo_Vetor(JOGADOR jogadores[]);
+
 void OrdenarJogadores_alfabeto(JOGADOR jogadores[], int n);
 void OrdenarJogadores_posicao( JOGADOR jogadores[], int n);
 void OrdenarJogadores_vitoria (JOGADOR jogadores[], int n);
+
 void ListarJogadores_posicaoCampeonato (JOGADOR auxiliar[], int n);
 void ListarJogadores_PontuacaoMenor (JOGADOR auxiliar[], int n, int limite);
 void ListarJogadores_PontuacaoMaior (JOGADOR auxiliar[], int n, int limite);

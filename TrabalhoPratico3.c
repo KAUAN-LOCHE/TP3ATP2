@@ -1,45 +1,3 @@
-/*
-? Nome do Jogador
-? Data de Nascimento
-? CPF
-? G?nero
-? Estado civil
-? Equipe
-? Nome
-? Nickname da rede social
-? N?mero de seguidores na rede social
-? Patrocinadora principal
-? Nickname da rede social
-? N?mero de seguidores em redes sociais
-? Equipamento de Hardware
-? Modelo do computador/notebook
-? Processador
-? Placa de v?deo
-? Quantidade de Mem?ria RAM
-? Dados do campeonato
-? Pontua??o no campeonato
-? Quantidade de vit?rias (3 pontos por vit?ria)
-? Quantidade de derrotas (0 pontos por derrota)
-? Quantidade de empates (1 ponto por empate)
-? Quantidade de t?tulos que o jogador ganhou
-? Posi??o do rank mundial
-
-? Fun??es para a escrita e leitura de diferentes jogadores e de todos os
-dados que o norteiam. Assim possibilitando cadastro de jogadores.
-? Possibilitar a altera??o, ou seja, corre??o dos dados de um jogador.
-? Inserir vit?ria, derrota ou empate para um jogador e com isso atualizar sua pontua??o no campeonato.
-? Listar todos os jogadores ordem alfab?tica por nome
-? Listar todos os jogadores por ordem de sua posi??o no rank mundial
-? Listar jogadores que possuem maior n?mero de vit?rias no campeonato
-? Mostrar (listar) classifica??o do campeonato com nome, posi??o no
-campeonato, pontua??o, quantidade de vitorias, derrotas e empates.
-? Listar jogadores com pontua??o no campeonato maior que um certo valor
-? Listar jogadores com pontua??o no campeonato menor que um certo valor
-? Buscar um jogador por nome
-? Buscar um jogador por posi??o no rank mundial
-? Mostrar a quantidade m?dia de seguidores de um jogador do campeonato, ou seja, um jogador do campeonato possui em m?dia quantos seguidores.
-*/ 
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -49,43 +7,38 @@ campeonato, pontua??o, quantidade de vitorias, derrotas e empates.
 
 int main(){
     setlocale(LC_ALL, "Portuguese");
-    //Menu e utiliza??o fun??es//
+    //Menu e utilização funções//
     int n;
-    printf("Este e um programa para manipular structs de jogadores gravados em arquivos binarios\n");
+    printf("Este e um programa para manipular structs de jogadores gravados em arquivos binários\n");
     printf("Digite quantidade de jogadores: ");
     scanf("%d", &n);
 
     JOGADOR jogadores[n], jogadoreslidos[n];
 
-
-
-    
     int opcao;
     do{
         printf("1 - Gravar jogadores;\n");
         printf("2 - Ler jogadores;\n");
         printf("3 - Alterar jogador;\n");
-        printf("4 - Alterar pontuaÃ§Ã£o;\n");
-        printf("5 - Listar jogadores ordem alfabÃ©tica;\n");
-        printf("6 - Listar jogadores posiÃ§Ã£o rank mundial;\n");
-        printf("7 - Listar jogadores que possuem maior nÃºmero de vitÃ³rias;\n");
-        printf("8 - Listar classificaÃ§Ã£o campeonato;\n");
-        printf("9 - Listar jogadores com pontuaÃ§Ã£o maior que;\n");
-        printf("10 - Listar jogadores com pontuaÃ§Ã£o menor que;\n");
-        printf("11 - Buscar jogador por nome;\n");
-        printf("12 - Buscar jogador por rank mundial;\n");
-        printf("13 - Mostrar m?dia seguidores jogadores;\n");
-        printf("14 - Sair\n");
+        printf("4 - Listar jogadores ordem alfabética;\n");
+        printf("5 - Listar jogadores posição rank mundial;\n");
+        printf("6 - Listar jogadores que possuem maior número de vitórias;\n");
+        printf("7 - Listar classificação campeonato;\n");
+        printf("8 - Listar jogadores com pontuação maior que;\n");
+        printf("9 - Listar jogadores com pontuação menor que;\n");
+        printf("10 - Buscar jogador por nome;\n");
+        printf("11 - Buscar jogador por rank mundial;\n");
+        printf("12 - Mostrar média seguidores jogadores;\n");
+        printf("13 - Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         string100 chaves;
-        int a, chave, limite;
-
+        int a, chave, limite, opcao2;
 
         switch (opcao){
             case 1:
-                EscreverJogadoresArquivoBinario(n);
+                EscreverJogadoresArquivoBinario();
                 break;
 
             case 2:
@@ -95,71 +48,134 @@ int main(){
             case 3:
                 printf("Digite numero jogador alterar: ");
                 scanf("%d", &a);
-                AlterarDadosJogadorArquivoBinario(a);
+                do{
+                    printf("1 - Alterar nome;\n");
+                    printf("2 - Alterar data;\n");
+                    printf("3 - Alterar CPF;\n");
+                    printf("4 - Alterar genero;\n");
+                    printf("5 - Alterar estado civil;\n");
+                    printf("6 - Alterar equipe;\n");
+                    printf("7 - Alterar patrocinadora;\n");
+                    printf("8 - Alterar rede social;\n");
+                    printf("9 - Alterar hardware;\n");
+                    printf("10 - Alterar Vitorias, empates, derrotas;\n");
+                    printf("11 - Alterar campeonato;\n");
+                    printf("12 - Sair;\n");
+                    printf("Escolha uma opcao: ");
+                    scanf("%d", &opcao2);
+
+                    switch(opcao2){
+                        case 1:
+                            AlterarNomeJogadorArquivoBinario(a);
+                            break;
+
+                        case 2:
+                            AlterarDataJogadorArquivoBinario(a);
+                            break;
+                        
+                        case 3:
+                            AlterarCPFJogadorArquivoBinario(a);
+                            break;
+                        
+                        case 4:
+                            AlterarGeneroJogadorArquivoBinario(a);
+                            break;
+
+                        case 5:
+                            AlterarCivilJogadorArquivoBinario(a);
+                            break;
+
+                        case 6:
+                            AlterarEquipeJogadorArquivoBinario(a);
+                            break;
+
+                        case 7:
+                            AlterarPatrocinadoraJogadorArquivoBinario(a);
+                            break;
+
+                        case 8:
+                            AlterarRedeSocialJogadorArquivoBinario(a);
+                            break;
+
+                        case 9:
+                            AlterarHardwareJogadorArquivoBinario(a);
+                            break;
+
+                        case 10:
+                            InserirVitoriaEmpateDerrota(a);
+                            break;
+                        
+                        case 11:
+                            AlterarCampeonatoJogadorArquivoBinario(a);
+                            break;
+                        
+                        case 12:
+                            printf("Parou de alterar jogador!");
+                            break;
+
+                        default:
+                            printf("Opcao invalida!");
+                            break;
+                    }
+                    system("pause");
+                }while(opcao2 != 12);
                 break;
 
-            case 4:
-                printf("Digite numero jogador alterar: ");
-                scanf("%d", &a);
-                InserirVitoriaEmpateDerrota(a);
-                break;
-
-            
-             case 5:
+             case 4:
                 LerArquivo_Vetor(jogadores);
                 OrdenarJogadores_alfabeto( jogadores, n);
 
                 break;
             
-            case 6:
+            case 5:
                 LerArquivo_Vetor(jogadores);
                 OrdenarJogadores_posicao( jogadores, n);
 
                 break;
             
-            case 7:
+            case 6:
                 LerArquivo_Vetor(jogadores);
                 OrdenarJogadores_vitoria( jogadores, n);
 
                 break;
             
-            case 8:
+            case 7:
                 LerArquivo_Vetor(jogadores);
                 ListarJogadores_posicaoCampeonato(jogadores, n);
                 break;
             
-            case 9:
+            case 8:
                 LerArquivo_Vetor(jogadores);
                 printf("Digite o liimite de pontos para que seja listado os jogadores com pontuaÃƒÂƒÃ‚Â§ÃƒÂƒÃ‚Â£o maior: ");
                 scanf("%d", &limite);
                 ListarJogadores_PontuacaoMaior(jogadores, n, limite );
                 break;
             
-            case 10:
+            case 9:
                 LerArquivo_Vetor(jogadores);
                 printf("Digite o liimite de pontos para que seja listado os jogadores com pontuaÃƒÂƒÃ‚Â§ÃƒÂƒÃ‚Â£o menor: ");
                 scanf("%d", &limite);
                 ListarJogadores_PontuacaoMenor(jogadores, n , limite);
                 break;
             
-            case 11:
+            case 10:
                 printf("Digite nome: ");
                 fflush(stdin);
                 gets(chaves);
                 BuscarJogadorNome(chaves);
                 break;
 
-            case 12:
+            case 11:
                 printf("Digite rank: ");
                 scanf("%d", &chave);
                 BuscarJogadorRank(chave);
                 break;
 
-            case 13:
+            case 12:
                 MostrarMediaSeguidoresJogadores(n);
                 break;
 
-            case 14:
+            case 13:
                 printf("Saiu do programa");
                 break;
 
@@ -168,7 +184,7 @@ int main(){
                 break;
         }
         system("pause");
-    }while(opcao != 14);
+    }while(opcao != 13);
 }
 
 
